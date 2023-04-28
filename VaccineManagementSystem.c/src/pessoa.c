@@ -10,3 +10,5 @@ typedef struct pessoa{
     int documento;
     Vacina* cartao_vac;
 }Pessoa;
+
+//teste
