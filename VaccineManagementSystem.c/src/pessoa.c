@@ -4,9 +4,9 @@
 #include "vacina.h"
 
 
-struct pessoa{
+typedef struct pessoa{
     char nome[100];
     int idade;
     int documento;
     Vacina* cartao_vac;
-};
+}Pessoa;
