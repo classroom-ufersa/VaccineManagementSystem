@@ -13,21 +13,46 @@ Pessoa* cria_pessoa() {
     return(NULL);
 }
 
-Pessoa* add_pessoa(Pessoa* p) {
+Pessoa* add_pessoa() {
     Pessoa* nova = (Pessoa*) malloc(sizeof(Pessoa));
+    FILE* entrada;
+
+    entrada = fopen("pessoas.txt", "at");
 
     printf("Informe o nome da pessoa: ");
-    scanf(" %[^\n]s", &p->nome);
+    scanf(" %[^\n]s", nova->nome);
     printf("Informe a idade da pessoa: ");
-    scanf("%d", &p->idade);
+    scanf("%d", &nova->idade);
     printf("Informe o documento da pessoa: ");
-    scanf("%d", &p->documento);
+    scanf("%d", &nova->documento);
+
+    fprintf(entrada, "%s\t%d\t%d\n", nova->nome, nova->idade, nova->documento);
+
+    fclose(entrada);
 
     return(nova);
 }
 
-void listar_pessoas(Pessoa* p) {
-    Pessoa* listar;
+void listar_pessoas() {
+    FILE* entrada;
+    char linha[100];
+    char nome[50];
+    int idade;
+    int doc;
 
-    for(listar = p; listar != NULL; listar = listar->)
+    entrada = fopen("pessoas.txt", "rt");
+
+    if(entrada == NULL) {
+        printf("ERRO!\n");
+        exit(1);
+    }
+
+    while(fgets(linha, 100, entrada) != NULL) {
+        sscanf(linha, "%s\t%d\t%d", nome, &idade, &doc);
+
+        printf("%s\t%d\t%d\n", nome, idade, doc);
+    }
+    printf("\n");
+
+    fclose(entrada);
 }
