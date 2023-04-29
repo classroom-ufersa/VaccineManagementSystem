@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct pessoa{
+typedef struct pessoa{
     char nome[100];
     int idade;
     int documento;
     //Cartao de vacina
-};
+}Pessoa;
 
 Pessoa* cria_pessoa() {
     return(NULL);

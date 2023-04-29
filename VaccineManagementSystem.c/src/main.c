@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pessoa.c"
+//#include "pessoa.c"
 #include "vacina.c"
 
 
 
 int main(){
-    Vacina* vacina = NULL;
-    Pessoa* pessoa = NULL;
+    Vacina* vacina_teste;
+    //Pessoa* pessoa;
     int Opcao;
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 9){
@@ -19,6 +19,13 @@ int main(){
         switch(Opcao){
             case 1:
             printf("\tAdicionar Vacina\t\n");
+            vacina_teste = cria_vacina(vacina_teste);
+            while (vacina_teste->prox_vac != NULL)
+            {
+                printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina_teste->nome, vacina_teste->lote, vacina_teste->data_fab, vacina_teste->data_val);
+                vacina_teste = vacina_teste->prox_vac;
+            }
+            //printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina->nome,vacina->lote,vacina->data_fab,vacina->data_val);
             //função adicionar vacina
             break;
             case 2:
