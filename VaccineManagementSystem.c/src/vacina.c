@@ -20,6 +20,7 @@ Lista_Vac* Inicia_Lista_Vac(void){
         printf("Erro ao alocar memória.\n");
         exit(1);
     }
+    Lista->prox == NULL;
     return(Lista);
 }
 
@@ -51,11 +52,42 @@ void listar_vacinas() {
 
 int Lista_Vazia(Lista_Vac* lista){
     if(lista->prox == NULL){
-        return(1);
+        return 1;
     }
     else{
-        return(0);
+        return -1;
     }
 }
 
-Lista_Vac* Cria_Vacina(Lista_Vac* lista, int );
+Lista_Vac* Insere_Vacina_Vazia(Lista_Vac* lista){
+    printf("Insira o nome da vacina:\n");
+    scanf(" %[^\n]", lista->vacinas->nome);
+    printf("Insira o lote da vacina %s:\n", lista->vacinas->nome);
+    scanf("%i", lista->vacinas->lote);
+    printf("Insira a data de fabricação da vacina %s:\n", lista->vacinas->nome);
+    scanf(" %[^\n]", lista->vacinas->data_fab);
+    printf("Insira a data de validade da vacina %s:\n", lista->vacinas->nome);
+    scanf(" %[^\n]", lista->vacinas->data_val);
+    lista->prox = NULL;
+    return (lista);
+}
+
+Lista_Vac* Insere_Vacina(Lista_Vac* lista){
+    Lista_Vac* insere_vac = (Lista_Vac*) malloc(sizeof(Lista_Vac));
+    if(insere_vac == NULL){
+        printf("Erro ao alocar memória.\n");
+        exit(1);
+    }
+    printf("Insira o nome da vacina:\n");
+    scanf(" %[^\n]", insere_vac->vacinas->nome);
+    printf("Insira o lote da vacina %s:\n", insere_vac->vacinas->nome);
+    scanf("%i", insere_vac->vacinas->lote);
+    printf("Insira a data de fabricação da vacina %s:\n", insere_vac->vacinas->nome);
+    scanf(" %[^\n]", insere_vac->vacinas->data_fab);
+    printf("Insira a data de validade da vacina %s:\n", insere_vac->vacinas->nome);
+    scanf(" %[^\n]", insere_vac->vacinas->data_val);
+    insere_vac->prox = NULL;
+    lista->prox = insere_vac;
+    lista = lista->prox;
+    return(insere_vac);
+}

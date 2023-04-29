@@ -7,9 +7,9 @@
 
 
 int main(){
-    Vacina* vacina_teste;
-    Pessoa* pessoa;
-    int Opcao;
+    Lista_Vac* Lista_Vacinas = Inicia_Lista_Vac();
+    Lista_Vac* primeira_vac;
+    int Opcao, Condicao;
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 10){
         printf("Digite a opção desejada:\n");
@@ -54,8 +54,8 @@ int main(){
             break;
             case 8:
             printf("\tAdicionar Pessoa\t\n");
-            pessoa = cria_pessoa();
-            pessoa = add_pessoa();
+            //pessoa = cria_pessoa();
+            //pessoa = add_pessoa();
 
             //função
             break;
@@ -68,7 +68,7 @@ int main(){
         }
     }
     
-    free(pessoa);
+    //free(pessoa);
 
     return 0;
 }
