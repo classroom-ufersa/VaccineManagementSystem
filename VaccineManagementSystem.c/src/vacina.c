@@ -6,55 +6,30 @@ typedef struct vacina{
     int lote;
     char data_fab[50];
     char data_val[50];
-    struct vacina* prox_vac;
 }Vacina;
 
-Vacina *cria_vacina(Vacina *vac)
-{
-    Vacina *outro_vac;
-    char entrada;
-    vac = (Vacina *)malloc(sizeof(Vacina));
-    if (vac == NULL)
-    {
+typedef struct lista_vac{
+    Vacina *vacinas;
+    struct lista_vac* prox;
+} Lista_Vac;
+//Lista Vac funciona como nó
+
+Lista_Vac* Inicia_Lista_Vac(void){
+    Lista_Vac* Lista = (Lista_Vac*) malloc(sizeof(Lista_Vac));
+    if (Lista == NULL){
         printf("Erro ao alocar memória.\n");
         exit(1);
     }
-    printf("Insira o nome da vacina:\n");
-    scanf(" %[^\n]", vac->nome);
-    printf("Insira o lote da vacina %s:\n", vac->nome);
-    scanf("%i", &vac->lote);
-    printf("Insira a data de fabricação da vacina %s:(Formato: xx-xx-xxxx)\n", vac->nome);
-    scanf("%s", vac->data_fab);
-    printf("Insira o data de validade da vacina %s:(Formato: xx-xx-xxxx)\n", vac->nome);
-    scanf("%s", vac->data_val);
-
-    vac->prox_vac = NULL;
-    Vacina *primeira = vac;
-
-    printf("Deseja adicionar outra vacina ao sistema?[S/N]\n");
-    scanf(" %[^\n]", &entrada);
-    while (entrada == 's' || entrada == 'S')
-    {
-        outro_vac = (Vacina *)malloc(sizeof(Vacina));
-        if (outro_vac == NULL)
-        {
-            printf("Erro ao alocar memória.\n");
-            exit(1);
-        }
-        printf("Insira o nome da vacina:\n");
-        scanf(" %[^\n]", outro_vac->nome);
-        printf("Insira o lote da vacina %s:\n", outro_vac->nome);
-        scanf("%i", &outro_vac->lote);
-        printf("Insira a data de fabricação da vacina %s:(Formato: xx-xx-xxxx)\n", outro_vac->nome);
-        scanf(" %[^\n]", outro_vac->data_fab);
-        printf("Insira o data de validade da vacina %s:(Formato: xx-xx-xxxx)\n", outro_vac->nome);
-        scanf(" %[^\n]", outro_vac->data_val);
-        printf("Deseja adicionar outra vacina ao sistema?[S/N]\n");
-        scanf(" %[^\n]", &entrada);
-        outro_vac->prox_vac = NULL;
-        vac->prox_vac = outro_vac;
-        vac = vac->prox_vac;
-    }
-
-    return (primeira);
+    return(Lista);
 }
+
+int Lista_Vazia(Lista_Vac* lista){
+    if(lista->prox == NULL){
+        return(1);
+    }
+    else{
+        return(0);
+    }
+}
+
+Lista_Vac* Cria_Vacina(Lista_Vac* lista, int );
