@@ -50,7 +50,7 @@ Vacina *cria_vacina(Vacina *vac)
         printf("Insira o data de validade da vacina %s:(Formato: xx-xx-xxxx)\n", outro_vac->nome);
         scanf(" %[^\n]", outro_vac->data_val);
         printf("Deseja adicionar outra vacina ao sistema?[S/N]\n");
-        scanf("%c", &entrada);
+        scanf(" %[^\n]", &entrada);
         outro_vac->prox_vac = NULL;
         vac->prox_vac = outro_vac;
         vac = vac->prox_vac;
