@@ -23,6 +23,32 @@ Lista_Vac* Inicia_Lista_Vac(void){
     return(Lista);
 }
 
+void listar_vacinas() {
+    FILE* entrada;
+    char linha[100];
+    char nome[50];
+    int lote;
+    char data_fab[50];
+    char data_val[50];
+
+    entrada = fopen("vacinas.txt", "rt");
+
+    if(entrada == NULL) {
+        printf("ERRO!\n");
+        exit(1);
+    }
+
+    while(fgets(linha, 100, entrada) != NULL) {
+        sscanf(linha, "Nome: %s\tLote: %d\tData de Fabricacao: %s\tData de Validade: %s", nome, &lote, data_fab, data_val);
+
+        printf("Nome: %s\tLote: %d\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
+    }
+
+    printf("\n");
+
+    fclose(entrada);
+}
+
 int Lista_Vazia(Lista_Vac* lista){
     if(lista->prox == NULL){
         return(1);

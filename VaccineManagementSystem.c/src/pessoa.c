@@ -48,9 +48,9 @@ void listar_pessoas() {
     }
 
     while(fgets(linha, 100, entrada) != NULL) {
-        sscanf(linha, "%s\t%d\t%d", nome, &idade, &doc);
+        sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d", nome, &idade, &doc);
 
-        printf("%s\t%d\t%d\n", nome, idade, doc);
+        printf("Nome: %s\tIdade: %d\tDocumento: %d\n", nome, idade, doc);
     }
     printf("\n");
 

@@ -1,4 +1,0 @@
-vlad	345	567
-joao	12	352
-gabas	20	234235
-carlos	34	4556
