@@ -7,9 +7,11 @@
 
 
 int main(){
-    Lista_Vac* Lista_Vacinas = Inicia_Lista_Vac();
-    Lista_Vac* primeira_vac;
-    int Opcao, Condicao;
+    int Opcao;
+    Vac_Celula* lista_vac = Inicializa_Lista_Vac();
+    lista_vac->prox = NULL;
+
+
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 10){
         printf("Digite a opção desejada:\n");
@@ -19,12 +21,8 @@ int main(){
         switch(Opcao){
             case 1:
             printf("\tAdicionar Vacina\t\n");
-            //vacina_teste = cria_vacina(vacina_teste);
-           // while (vacina_teste->prox_vac != NULL)
-           // {
-           //     printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina_teste->nome, vacina_teste->lote, vacina_teste->data_fab, vacina_teste->data_val);
-                //vacina_teste = vacina_teste->prox_vac;
-           // }
+            lista_vac =  Adiciona_Vacina(lista_vac);
+            printf("Nome: %s\nLote: %s\nFab: %s\nVal: %s\n", lista_vac->vacinas->nome, lista_vac->vacinas->lote, lista_vac->vacinas->data_val, lista_vac->vacinas->data_val);
             //printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina->nome,vacina->lote,vacina->data_fab,vacina->data_val);
             //função adicionar vacina
             break;
