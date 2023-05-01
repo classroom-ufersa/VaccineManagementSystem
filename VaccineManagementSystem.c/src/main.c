@@ -7,10 +7,18 @@
 
 
 int main(){
+
+    int Opcao;
+    Vacina* primeira_celula_vac = inicializa_vacina();
+    Lista_Vac* lista = inicializa_lista(primeira_celula_vac);
+
+
+
     Lista_Vac* Lista_Vacinas = Inicia_Lista_Vac();
     Lista_Vac* primeira_vac;
     Pessoa* pessoa;
     int Opcao, Condicao;
+
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 10){
         printf("Digite a opção desejada:\n");
@@ -20,52 +28,69 @@ int main(){
         switch(Opcao){
             case 1:
             printf("\tAdicionar Vacina\t\n");
-            Lista_Vacinas = Insere_Vacina(Lista_Vacinas);
-            //vacina_teste = cria_vacina(vacina_teste);
-            //while (vacina_teste->prox_vac != NULL)
-            //{
-            //    printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina_teste->nome, vacina_teste->lote, vacina_teste->data_fab, vacina_teste->data_val);
-            //    vacina_teste = vacina_teste->prox_vac;
-            //}
-            //printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina->nome,vacina->lote,vacina->data_fab,vacina->data_val);
-            //função adicionar vacina
+
+            lista = adiciona_vacina(lista);
+            system("cls");
+
             break;
             case 2:
             printf("\tRemover Vacina\t\n");
             //função remover vacina
+            system("cls");
             break;
             case 3:
             printf("\tListar Vacinas\t\n");
             listar_vacinas();
             //função listar vacina
+            system("cls");
             break;
             case 4:
             printf("\tBuscar Vacinas\t\n");
             //função buscar vacina
+            system("cls");
             break;
             case 5:
             printf("\tAplicação de Vacina em uma Pessoa\t\n");
             //função aplicação vacina
+            system("cls");
             break;
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");    
+
+            //função
+            system("cls");
+            break;
+            case 7:
+            printf("\tConsultar Quantidade de Pessoas que Aplicaram Determinada Vacina\t\n");
+            //função
+            system("cls");
+
             //função editar vacina
             break;
             case 7:
             printf("\tConsultar Quantitativo de Pessoas que Aplicaram Determinada Vacina\t\n");
             //função a quantidade de pessoa que aplicaram vacina
+
             break;
             case 8:
             printf("\tAdicionar Pessoa\t\n");
             pessoa = cria_pessoa();
             pessoa = add_pessoa();
 
+
+            //função
+            system("cls");
+
             //função de adicionar pessoa
+
             break;
             case 9:
             printf("\tListar Pessoas\t\n");
             listar_pessoas();
+
+            system("cls");
             //função de listar pessoas
+
             break;    
             case 10:
             break;
@@ -76,3 +101,4 @@ int main(){
 
     return 0;
 }
+
