@@ -8,8 +8,8 @@
 
 int main(){
     int Opcao;
-    Vac_Celula* lista_vac = Inicializa_Lista_Vac();
-    lista_vac->prox = NULL;
+    Vacina* primeira_celula_vac = inicializa_vacina();
+    Lista_Vac* lista = inicializa_lista(primeira_celula_vac);
 
 
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
@@ -21,34 +21,38 @@ int main(){
         switch(Opcao){
             case 1:
             printf("\tAdicionar Vacina\t\n");
-            lista_vac =  Adiciona_Vacina(lista_vac);
-            printf("Nome: %s\nLote: %s\nFab: %s\nVal: %s\n", lista_vac->vacinas->nome, lista_vac->vacinas->lote, lista_vac->vacinas->data_val, lista_vac->vacinas->data_val);
-            //printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina->nome,vacina->lote,vacina->data_fab,vacina->data_val);
-            //função adicionar vacina
+            lista = adiciona_vacina(lista);
+            system("cls");
             break;
             case 2:
             printf("\tRemover Vacina\t\n");
             //função remover vacina
+            system("cls");
             break;
             case 3:
             printf("\tListar Vacinas\t\n");
             //função listar vacina
+            system("cls");
             break;
             case 4:
             printf("\tBuscar Vacinas\t\n");
             //função buscar vacina
+            system("cls");
             break;
             case 5:
             printf("\tAplicação de Vacina em uma Pessoa\t\n");
             //função aplicação vacina
+            system("cls");
             break;
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");    
             //função
+            system("cls");
             break;
             case 7:
             printf("\tConsultar Quantidade de Pessoas que Aplicaram Determinada Vacina\t\n");
             //função
+            system("cls");
             break;
             case 8:
             printf("\tAdicionar Pessoa\t\n");
@@ -56,10 +60,12 @@ int main(){
             //pessoa = add_pessoa();
 
             //função
+            system("cls");
             break;
             case 9:
             printf("\tListar Pessoas\t\n");
             listar_pessoas();
+            system("cls");
             break;    
             case 10:
             break;
@@ -70,3 +76,4 @@ int main(){
 
     return 0;
 }
+
