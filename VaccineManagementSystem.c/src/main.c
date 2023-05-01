@@ -21,14 +21,6 @@ int main(){
             case 1:
             printf("\tAdicionar Vacina\t\n");
             Lista_Vacinas = Insere_Vacina(Lista_Vacinas);
-            //vacina_teste = cria_vacina(vacina_teste);
-            //while (vacina_teste->prox_vac != NULL)
-            //{
-            //    printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina_teste->nome, vacina_teste->lote, vacina_teste->data_fab, vacina_teste->data_val);
-            //    vacina_teste = vacina_teste->prox_vac;
-            //}
-            //printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina->nome,vacina->lote,vacina->data_fab,vacina->data_val);
-            //função adicionar vacina
             break;
             case 2:
             printf("\tRemover Vacina\t\n");
