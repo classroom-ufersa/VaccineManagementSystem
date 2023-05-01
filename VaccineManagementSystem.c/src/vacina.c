@@ -42,7 +42,7 @@ void listar_vacinas() {
     while(fgets(linha, 100, entrada) != NULL) {
         sscanf(linha, "Nome: %s\tLote: %d\tData de Fabricacao: %s\tData de Validade: %s", nome, &lote, data_fab, data_val);
 
-        printf("Nome: %s\tLote: %d\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
+        printf("Nome: %s\tLote: %d\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
     }
 
     printf("\n");
@@ -102,5 +102,6 @@ Lista_Vac* Insere_Vacina(Lista_Vac* lista){
     insere_vac->prox = NULL;
     lista->prox = insere_vac;
     lista = lista->prox;
+
     return(insere_vac);
 }

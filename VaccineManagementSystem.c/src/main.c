@@ -36,6 +36,7 @@ int main(){
             break;
             case 3:
             printf("\tListar Vacinas\t\n");
+            listar_vacinas();
             //função listar vacina
             break;
             case 4:
