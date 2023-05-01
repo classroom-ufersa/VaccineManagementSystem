@@ -9,6 +9,7 @@
 int main(){
     Lista_Vac* Lista_Vacinas = Inicia_Lista_Vac();
     Lista_Vac* primeira_vac;
+    Pessoa* pessoa;
     int Opcao, Condicao;
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 10){
@@ -19,12 +20,13 @@ int main(){
         switch(Opcao){
             case 1:
             printf("\tAdicionar Vacina\t\n");
+            Lista_Vacinas = Insere_Vacina(Lista_Vacinas);
             //vacina_teste = cria_vacina(vacina_teste);
-           // while (vacina_teste->prox_vac != NULL)
-           // {
-           //     printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina_teste->nome, vacina_teste->lote, vacina_teste->data_fab, vacina_teste->data_val);
-                //vacina_teste = vacina_teste->prox_vac;
-           // }
+            //while (vacina_teste->prox_vac != NULL)
+            //{
+            //    printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina_teste->nome, vacina_teste->lote, vacina_teste->data_fab, vacina_teste->data_val);
+            //    vacina_teste = vacina_teste->prox_vac;
+            //}
             //printf("Nome: %s\nLote: %i\nData Fab: %s\nData Val:%s\n", vacina->nome,vacina->lote,vacina->data_fab,vacina->data_val);
             //função adicionar vacina
             break;
@@ -46,29 +48,30 @@ int main(){
             break;
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");    
-            //função
+            //função editar vacina
             break;
             case 7:
-            printf("\tConsultar Quantidade de Pessoas que Aplicaram Determinada Vacina\t\n");
-            //função
+            printf("\tConsultar Quantitativo de Pessoas que Aplicaram Determinada Vacina\t\n");
+            //função a quantidade de pessoa que aplicaram vacina
             break;
             case 8:
             printf("\tAdicionar Pessoa\t\n");
-            //pessoa = cria_pessoa();
-            //pessoa = add_pessoa();
+            pessoa = cria_pessoa();
+            pessoa = add_pessoa();
 
-            //função
+            //função de adicionar pessoa
             break;
             case 9:
             printf("\tListar Pessoas\t\n");
             listar_pessoas();
+            //função de listar pessoas
             break;    
             case 10:
             break;
         }
     }
     
-    //free(pessoa);
+    free(pessoa);
 
     return 0;
 }

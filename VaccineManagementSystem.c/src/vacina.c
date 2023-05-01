@@ -11,7 +11,7 @@ typedef struct vacina{
 typedef struct lista_vac{
     Vacina *vacinas;
     struct lista_vac* prox;
-} Lista_Vac;
+}Lista_Vac; 
 //Lista Vac funciona como nó
 
 Lista_Vac* Inicia_Lista_Vac(void){
@@ -20,7 +20,7 @@ Lista_Vac* Inicia_Lista_Vac(void){
         printf("Erro ao alocar memória.\n");
         exit(1);
     }
-    Lista->prox == NULL;
+    Lista->prox = NULL;
     return(Lista);
 }
 
@@ -63,7 +63,7 @@ Lista_Vac* Insere_Vacina_Vazia(Lista_Vac* lista){
     printf("Insira o nome da vacina:\n");
     scanf(" %[^\n]", lista->vacinas->nome);
     printf("Insira o lote da vacina %s:\n", lista->vacinas->nome);
-    scanf("%i", lista->vacinas->lote);
+    scanf("%i", &lista->vacinas->lote);
     printf("Insira a data de fabricação da vacina %s:\n", lista->vacinas->nome);
     scanf(" %[^\n]", lista->vacinas->data_fab);
     printf("Insira a data de validade da vacina %s:\n", lista->vacinas->nome);
@@ -73,7 +73,15 @@ Lista_Vac* Insere_Vacina_Vazia(Lista_Vac* lista){
 }
 
 Lista_Vac* Insere_Vacina(Lista_Vac* lista){
+    FILE* entrada;
     Lista_Vac* insere_vac = (Lista_Vac*) malloc(sizeof(Lista_Vac));
+
+    entrada = fopen("vacinas.txt", "at");
+    if(entrada == NULL) {
+        printf("ERRO!\n");
+        exit(1);
+    }
+
     if(insere_vac == NULL){
         printf("Erro ao alocar memória.\n");
         exit(1);
@@ -81,11 +89,16 @@ Lista_Vac* Insere_Vacina(Lista_Vac* lista){
     printf("Insira o nome da vacina:\n");
     scanf(" %[^\n]", insere_vac->vacinas->nome);
     printf("Insira o lote da vacina %s:\n", insere_vac->vacinas->nome);
-    scanf("%i", insere_vac->vacinas->lote);
+    scanf("%i", &insere_vac->vacinas->lote);
     printf("Insira a data de fabricação da vacina %s:\n", insere_vac->vacinas->nome);
     scanf(" %[^\n]", insere_vac->vacinas->data_fab);
     printf("Insira a data de validade da vacina %s:\n", insere_vac->vacinas->nome);
     scanf(" %[^\n]", insere_vac->vacinas->data_val);
+
+    fprintf(entrada, "Nome: %s\tLote: %d\tData de Fabricacao: %s\tData de Validade: %s\n", insere_vac->vacinas->nome, insere_vac->vacinas->lote, insere_vac->vacinas->data_fab, insere_vac->vacinas->data_val);
+
+    fclose(entrada);
+
     insere_vac->prox = NULL;
     lista->prox = insere_vac;
     lista = lista->prox;
