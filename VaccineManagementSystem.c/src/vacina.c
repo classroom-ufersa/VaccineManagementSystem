@@ -33,25 +33,25 @@ Lista_Vac* inicializa_lista(Vacina* vacina){
 }
 
 Vacina* adiciona_vacina(Lista_Vac* primeiro){
-    Vacina* nova_vacina = malloc(sizeof(Vacina));
-    if(nova_vacina == NULL){
-        printf("Erro ao alocar memória.\n");
-        exit(1);
-    }
-    if(primeiro->primeira->prox == NULL){
+    if(primeiro->primeira->nome != NULL){
         printf("Insira o nome da vacina:\n");
-        scanf(" %[^\n]", nova_vacina->nome);
-        printf("Insira o lote da vacina %s:\n", nova_vacina->nome);
-        scanf(" %[^\n]", nova_vacina->lote);
-        printf("Insira a data de fabricação da vacina %s:\n", nova_vacina->nome);
-        scanf(" %[^\n]", nova_vacina->fab);
-        printf("Insira a data de validade da vacina %s:\n", nova_vacina->nome);
-        scanf(" %[^\n]", nova_vacina->val);
-        primeiro->primeira->prox = nova_vacina;
-        nova_vacina->prox = NULL;
+        scanf(" %[^\n]", primeiro->primeira->nome);
+        printf("Insira o lote da vacina %s:\n", primeiro->primeira->nome);
+        scanf(" %[^\n]", primeiro->primeira->lote);
+        printf("Insira a data de fabricação da vacina %s:\n", primeiro->primeira->nome);
+        scanf(" %[^\n]", primeiro->primeira->fab);
+        printf("Insira a data de validade da vacina %s:\n", primeiro->primeira->nome);
+        scanf(" %[^\n]", primeiro->primeira->val);
+        primeiro->primeira->prox = NULL;
         return(primeiro);
     }
     else{
+        Vacina* nova_vacina = malloc(sizeof(Vacina));
+        if (nova_vacina == NULL)
+        {
+            printf("Erro ao alocar memória.\n");
+            exit(1);
+        }
         Vacina *ultima = malloc(sizeof(Vacina));
         if (ultima == NULL)
         {
@@ -73,15 +73,35 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
         ultima->prox = nova_vacina;
         nova_vacina->prox = NULL;
         
+        ultima = NULL;
+        free(ultima);
         return(primeiro);
     }
 }
+
+void insere_vacina_txt(Lista_Vac* primeiro_no){
+
+    FILE* entrada = fopen("/home/abner/Desktop/Projeto/VaccineManagementSystem/VaccineManagementSystem.c/src/vacina.txt", "a+");
+    if(entrada == NULL){
+        printf("Erro ao abrir o arquivo.\n");
+    }
+    Vacina* ponteiro = primeiro_no->primeira;
+    while(ponteiro->prox != NULL){
+        fprintf(entrada, "\nNome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", ponteiro->nome, ponteiro->lote,ponteiro->fab,ponteiro->val);
+        ponteiro = ponteiro->prox;
+    }
+    ponteiro = NULL;
+    free(ponteiro);
+    fclose(entrada);
+}
+
+
 
 void listar_vacinas() {
     FILE* entrada;
     char linha[100];
     char nome[50];
-    int lote;
+    char lote[50];
     char data_fab[50];
     char data_val[50];
 
@@ -103,7 +123,7 @@ void listar_vacinas() {
     fclose(entrada);
 }
 
-Lista_Vac* Insere_Vacina(Lista_Vac* lista){
+/*Lista_Vac* Insere_Vacina(Lista_Vac* lista){
     FILE* entrada;
     Lista_Vac* insere_vac = (Lista_Vac*) malloc(sizeof(Lista_Vac));
 
@@ -136,4 +156,4 @@ Lista_Vac* Insere_Vacina(Lista_Vac* lista){
 
     return(insere_vac);
 }
-
+*/

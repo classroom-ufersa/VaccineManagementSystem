@@ -29,6 +29,7 @@ int main(){
             case 3:
             printf("\tListar Vacinas\t\n");
             listar_vacinas();
+            //insere_vacina_txt(lista);
             //função listar vacina
             break;
             case 4:
