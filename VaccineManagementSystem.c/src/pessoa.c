@@ -26,7 +26,7 @@ Pessoa* add_pessoa() {
     printf("Informe o documento da pessoa: ");
     scanf("%d", &nova->documento);
 
-    fprintf(entrada,  "Nome: %s\tIdade: %d\tDocumento: %d\n", nova->nome, nova->idade, nova->documento);
+    fprintf(entrada, "Nome: %s\tIdade: %d\tDocumento: %d\n", nova->nome, nova->idade, nova->documento);
 
     fclose(entrada);
 
