@@ -3,9 +3,9 @@
 
 typedef struct vacina{
     char nome[50];
-    int lote;
-    char data_fab[50];
-    char data_val[50];
+    char lote[50];
+    char val[50];
+    char fab[50];
     struct vacina* prox;
 }Vacina;
 
@@ -56,25 +56,7 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
         if (ultima == NULL)
         {
             printf("Erro ao alocar memória.\n");
-            exit(1);ta_Vac* Inicia_Lista_Vac(void){
-
-    Lista_Vac* Lista = (Lista_Vac*) malloc(sizeof(Lista_Vac));
-
-    if (Lista == NULL){
-
-        printf("Erro ao alocar memória.\n");
-
-        exit(1);
-
-    }
-
-    Lista->prox = NULL;
-
-    return(Lista);
-
-}
-
-​
+            exit(1);
         }
         ultima = primeiro->primeira->prox;
         while(ultima->prox != NULL){
@@ -94,7 +76,6 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
         return(primeiro);
     }
 }
-
 
 void listar_vacinas() {
     FILE* entrada;
