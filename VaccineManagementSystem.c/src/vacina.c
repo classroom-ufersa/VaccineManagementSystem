@@ -62,6 +62,13 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
         printf("%s\n", nova_vacina->nome);
         nova_vacina->prox = primeiro->primeira_vac;
         primeiro->primeira_vac = nova_vacina;
+
+        Vacina* rascunho;
+        rascunho = primeiro->primeira_vac;
+        while(rascunho->prox != NULL){
+                printf("%s\n", rascunho->nome);
+                rascunho = rascunho->prox;
+            }
         
 
         
@@ -153,3 +160,4 @@ void listar_vacinas() {
     return(insere_vac);
 }
 */
+

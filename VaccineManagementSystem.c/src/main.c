@@ -27,14 +27,7 @@ int main(){
             //função remover vacina
             break;
             case 3:
-            printf("\tListar Vacinas\t\n");
-            Vacina* teste;
-            teste = lista->primeira_vac;
-            while(teste->prox != NULL){
-                printf("%s\n", teste->nome);
-                teste = teste->prox;
-            }
-            
+            printf("\tListar Vacinas\t\n");            
             //listar_vacinas();
             //insere_vacina_txt(lista);
             //função listar vacina
