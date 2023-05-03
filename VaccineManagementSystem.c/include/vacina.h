@@ -2,7 +2,9 @@ typedef struct vacina Vacina;
 
 typedef struct lista_vac Lista_Vac;
 
-Lista_Vac* Inicia_Lista_Vac(void);
+Vacina* inicializa_vacina();
+
+Lista_Vac* inicializa_lista();
 
 Lista_Vac* Insere_Vacina(Lista_Vac* lista);
 

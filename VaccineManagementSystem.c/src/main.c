@@ -7,8 +7,8 @@
 
 
 int main(){
-    Vacina* primeira_celula_vac = inicializa_vacina();
-    Lista_Vac* lista = inicializa_lista(primeira_celula_vac);
+    //Vacina* primeira_celula_vac = inicializa_vacina();
+    Lista_Vac* lista = inicializa_lista();
     Pessoa* pessoa;
     int Opcao, Condicao;
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
@@ -20,14 +20,21 @@ int main(){
         switch(Opcao){
             case 1:
             printf("\tAdicionar Vacina\t\n");
-            lista = adiciona_vacina(lista);
+            adiciona_vacina(lista);
             break;
             case 2:
             printf("\tRemover Vacina\t\n");
             //função remover vacina
             break;
             case 3:
-            printf("\tListar Vacinas\t\n");            
+            printf("\tListar Vacinas\t\n");      
+            Vacina* rascunho;
+            rascunho = lista->primeira_vac;
+            while(rascunho->prox != NULL){
+                printf("%s\n", rascunho->nome);
+                rascunho = rascunho->prox;
+            }
+                  
             //listar_vacinas();
             //insere_vacina_txt(lista);
             //função listar vacina
