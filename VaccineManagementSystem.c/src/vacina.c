@@ -10,7 +10,7 @@ typedef struct vacina{
 }Vacina;
 
 typedef struct lista_vac{
-    Vacina* primeira;
+    Vacina* primeira_vac;
 }Lista_Vac; 
 
 Vacina* inicializa_vacina(){
@@ -28,21 +28,20 @@ Lista_Vac* inicializa_lista(Vacina* vacina){
         printf("Erro ao alocar memória.\n");
         exit(1);
     }
-    primeiro->primeira = vacina; 
+    primeiro->primeira_vac = vacina; 
     return(primeiro);
 }
 
 Vacina* adiciona_vacina(Lista_Vac* primeiro){
-    if(primeiro->primeira->nome != NULL){
+    if(primeiro->primeira_vac->prox == NULL){
         printf("Insira o nome da vacina:\n");
-        scanf(" %[^\n]", primeiro->primeira->nome);
-        printf("Insira o lote da vacina %s:\n", primeiro->primeira->nome);
-        scanf(" %[^\n]", primeiro->primeira->lote);
-        printf("Insira a data de fabricação da vacina %s:\n", primeiro->primeira->nome);
-        scanf(" %[^\n]", primeiro->primeira->fab);
-        printf("Insira a data de validade da vacina %s:\n", primeiro->primeira->nome);
-        scanf(" %[^\n]", primeiro->primeira->val);
-        primeiro->primeira->prox = NULL;
+        scanf(" %[^\n]", primeiro->primeira_vac->nome);
+        printf("Insira o lote da vacina %s:\n", primeiro->primeira_vac->nome);
+        scanf(" %[^\n]", primeiro->primeira_vac->lote);
+        printf("Insira a data de fabricação da vacina %s:\n", primeiro->primeira_vac->nome);
+        scanf(" %[^\n]", primeiro->primeira_vac->fab);
+        printf("Insira a data de validade da vacina %s:\n", primeiro->primeira_vac->nome);
+        scanf(" %[^\n]", primeiro->primeira_vac->val);
         return(primeiro);
     }
     else{
@@ -52,16 +51,6 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
             printf("Erro ao alocar memória.\n");
             exit(1);
         }
-        Vacina *ultima = malloc(sizeof(Vacina));
-        if (ultima == NULL)
-        {
-            printf("Erro ao alocar memória.\n");
-            exit(1);
-        }
-        ultima = primeiro->primeira->prox;
-        while(ultima->prox != NULL){
-            ultima = ultima->prox;
-        }
         printf("Insira o nome da vacina:\n");
         scanf(" %[^\n]", nova_vacina->nome);
         printf("Insira o lote da vacina %s:\n", nova_vacina->nome);
@@ -70,18 +59,25 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
         scanf(" %[^\n]", nova_vacina->fab);
         printf("Insira a data de validade da vacina %s:\n", nova_vacina->nome);
         scanf(" %[^\n]", nova_vacina->val);
-        ultima->prox = nova_vacina;
-        nova_vacina->prox = NULL;
+        printf("%s\n", nova_vacina->nome);
+        nova_vacina->prox = primeiro->primeira_vac;
+        primeiro->primeira_vac = nova_vacina;
         
-        ultima = NULL;
-        free(ultima);
+
+        
         return(primeiro);
     }
 }
 
 void insere_vacina_txt(Lista_Vac* primeiro_no){
-
-    FILE* entrada = fopen("/home/abner/Desktop/Projeto/VaccineManagementSystem/VaccineManagementSystem.c/src/vacina.txt", "a+");
+    Vacina* Rascunho = primeiro_no->primeira_vac;
+    while(Rascunho->prox != NULL){
+        printf("%s\n", Rascunho->nome);
+        Rascunho = Rascunho->prox;
+    }
+    Rascunho = NULL;
+    free(Rascunho);
+    /*FILE* entrada = fopen("/home/abner/Desktop/Projeto/VaccineManagementSystem/VaccineManagementSystem.c/src/vacina.txt", "a+");
     if(entrada == NULL){
         printf("Erro ao abrir o arquivo.\n");
     }
@@ -92,7 +88,7 @@ void insere_vacina_txt(Lista_Vac* primeiro_no){
     }
     ponteiro = NULL;
     free(ponteiro);
-    fclose(entrada);
+    fclose(entrada);*/
 }
 
 
