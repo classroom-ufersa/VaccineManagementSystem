@@ -32,6 +32,12 @@ Lista_Vac* inicializa_lista(){
 }
 
 Vacina* adiciona_vacina(Lista_Vac* primeiro){
+    FILE* entrada;
+    entrada = fopen("vacinas.txt", "at");
+    if(entrada == NULL) {
+        printf("\nERRO!\n");
+        exit(1);
+    }
     Vacina *nova_vacina = malloc(sizeof(Vacina));
     if(nova_vacina == NULL){
         printf("Erro ao alocar memória.\n");
@@ -45,8 +51,20 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
     scanf(" %[^\n]", nova_vacina->fab);
     printf("Insira a data de validade da vacina %s:\n", nova_vacina->nome);
     scanf(" %[^\n]", nova_vacina->val);
+
     nova_vacina->prox = primeiro->primeira_vac;
     primeiro->primeira_vac = nova_vacina;
+
+    Vacina* rascunho;
+    rascunho = primeiro->primeira_vac;
+
+    while(rascunho->prox != NULL){
+        fprintf(entrada, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+        rascunho = rascunho->prox;
+    }
+
+    fclose(entrada);
+    
     return(NULL);
 }
 
