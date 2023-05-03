@@ -10,7 +10,8 @@ int main(){
     //Vacina* primeira_celula_vac = inicializa_vacina();
     Lista_Vac* lista = inicializa_lista();
     Pessoa* pessoa;
-    int Opcao, Condicao;
+    int Opcao;
+    //int Condicao;
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 10){
         printf("Digite a opção desejada:\n");

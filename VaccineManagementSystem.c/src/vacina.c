@@ -44,23 +44,29 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
         exit(1);
     }
     printf("Insira o nome da vacina:\n");
-    scanf(" %[^\n]", nova_vacina->nome);
+    scanf(" %[^\n]s", nova_vacina->nome);
     printf("Insira o lote da vacina %s:\n", nova_vacina->nome);
-    scanf("%i", nova_vacina->lote);
+    scanf(" %[^\n]s", nova_vacina->lote);
     printf("Insira a data de fabricação da vacina %s:\n", nova_vacina->nome);
-    scanf(" %[^\n]", nova_vacina->fab);
+    scanf(" %[^\n]s", nova_vacina->fab);
     printf("Insira a data de validade da vacina %s:\n", nova_vacina->nome);
-    scanf(" %[^\n]", nova_vacina->val);
+    scanf(" %[^\n]s", nova_vacina->val);
 
     nova_vacina->prox = primeiro->primeira_vac;
     primeiro->primeira_vac = nova_vacina;
 
     Vacina* rascunho;
-    rascunho = primeiro->primeira_vac;
 
-    while(rascunho->prox != NULL){
+    if(primeiro->primeira_vac->prox == NULL) {
+        rascunho = primeiro->primeira_vac;
         fprintf(entrada, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
-        rascunho = rascunho->prox;
+    }
+    else{
+        rascunho = primeiro->primeira_vac;
+        while(rascunho->prox != NULL){
+            fprintf(entrada, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+            rascunho = rascunho->prox;
+        }
     }
 
     fclose(entrada);
@@ -108,9 +114,9 @@ void listar_vacinas() {
     }
 
     while(fgets(linha, 100, entrada) != NULL) {
-        sscanf(linha, "Nome: %s\tLote: %d\tData de Fabricacao: %s\tData de Validade: %s", nome, &lote, data_fab, data_val);
+        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
 
-        printf("Nome: %s\tLote: %d\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
+        printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
     }
 
     printf("\n");
