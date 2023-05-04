@@ -33,7 +33,7 @@ Lista_Vac* inicializa_lista(){
 
 Vacina* adiciona_vacina(Lista_Vac* primeiro){
     FILE* entrada;
-    entrada = fopen("vacinas.txt", "at");
+    entrada = fopen("vacinas.txt", "a+");
     if(entrada == NULL) {
         printf("\nERRO!\n");
         exit(1);
@@ -52,22 +52,14 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
     printf("Insira a data de validade da vacina %s:\n", nova_vacina->nome);
     scanf(" %[^\n]s", nova_vacina->val);
 
+    fprintf(entrada, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nova_vacina->nome, nova_vacina->lote, nova_vacina->fab, nova_vacina->val);
+
+
+
+
+
     nova_vacina->prox = primeiro->primeira_vac;
     primeiro->primeira_vac = nova_vacina;
-
-    Vacina* rascunho;
-
-    if(primeiro->primeira_vac->prox == NULL) {
-        rascunho = primeiro->primeira_vac;
-        fprintf(entrada, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
-    }
-    else{
-        rascunho = primeiro->primeira_vac;
-        while(rascunho->prox != NULL){
-            fprintf(entrada, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
-            rascunho = rascunho->prox;
-        }
-    }
 
     fclose(entrada);
     
