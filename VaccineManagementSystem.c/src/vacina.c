@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct vacina{
     char nome[50];
@@ -91,30 +92,23 @@ void copiar_vacinas(Lista_Vac* lista) {
     char lote[50];
     char data_fab[50];
     char data_val[50];
-    int i = 0;
 
     entrada = fopen("vacinas.txt", "rt");
 
     if(entrada == NULL) {
         printf("ERRO!\n");
-        exit(1);
+        return;
     }
 
     while(fgets(linha, 100, entrada) != NULL) {
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
-        if(i == 0) {
-            lista->primeira_vac->nome = nome;
-            lista->primeira_vac->lote = lote;
-            lista->primeira_vac->fab = data_fab;
-            lista->primeira_vac->val = data_val;
-        }
-        else {
-            lista->primeira_vac->nome = nome;
-            lista->primeira_vac->lote = lote;
-            lista->primeira_vac->fab = data_fab;
-            lista->primeira_vac->val = data_val;
-        }
-        i++;
+        
+        strcpy(nome, lista->primeira_vac->nome);
+        strcpy(lote, lista->primeira_vac->lote);
+        strcpy(data_fab, lista->primeira_vac->fab);
+        strcpy(data_val, lista->primeira_vac->val);
+
+        lista->primeira_vac = lista->primeira_vac->prox;
     }
 
     printf("\n");
