@@ -96,7 +96,7 @@ void copiar_vacinas(Lista_Vac* lista) {
     entrada = fopen("vacinas.txt", "rt");
 
     if(entrada == NULL) {
-        printf("ERRO!\n");
+        printf("Banco de Dados não existe!\n");
         return;
     }
 

@@ -1,3 +1,0 @@
-Nome: jurubeba	Lote: 234	Data de Fabricacao: 24/06	Data de Validade: 24/07
-Nome: Coroancav	Lote: 456	Data de Fabricacao: 35/01	Data de Validade: 25/02
-Nome: Jansey	Lote: 4564	Data de Fabricacao: 13/05	Data de Validade: 13/06

@@ -1,3 +1,5 @@
 Nome: CoronaVac	Lote: 123	Data de Fabricacao: 24/06	Data de Validade: 24/07
 Nome: PFizer	Lote: 345	Data de Fabricacao: 24/07	Data de Validade: 24/08
 Nome: Sputnik	Lote: 334	Data de Fabricacao: 22/06	Data de Validade: 22/07
+Nome: GAGA	Lote: 234	Data de Fabricacao: 24/05	Data de Validade: 24/06
+Nome: Joao	Lote: 2342	Data de Fabricacao: 25/04	Data de Validade: 25/05
