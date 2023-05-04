@@ -10,7 +10,7 @@ int main(){
     //Vacina* primeira_celula_vac = inicializa_vacina();
     Lista_Vac* lista = inicializa_lista();
     Pessoa* pessoa;
-    copiar_vacinas(lista);
+    //copiar_vacinas(lista);
     int Opcao;
     //int Condicao;
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
@@ -30,11 +30,11 @@ int main(){
             break;
             case 3:
             printf("\tListar Vacinas\t\n");      
-            Vacina* rascunho;
-            rascunho = lista->primeira_vac;
-            while(rascunho->prox != NULL){
-                printf("%s\n", rascunho->nome);
-                rascunho = rascunho->prox;
+            Vacina* teste;
+            teste = lista->primeira_vac;
+            while(teste->prox != NULL){
+                printf("%s\n", teste->nome);
+                teste = teste->prox;
             }
                   
             //listar_vacinas();
@@ -43,6 +43,14 @@ int main(){
             break;
             case 4:
             printf("\tBuscar Vacinas\t\n");
+            char nome_vac[50];
+            char num_lote[50];
+            printf("Digite o nome da vicina: ");
+            scanf(" %[^\n]s", nome_vac);
+            printf("Digite o numero do lote: ");
+            scanf(" %[^\n]s", num_lote);
+            Vacina* rascunho = buscar_vacina(nome_vac, num_lote);
+            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
             //função buscar vacina
             break;
             case 5:
