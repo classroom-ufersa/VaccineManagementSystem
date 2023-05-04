@@ -54,10 +54,6 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
 
     fprintf(entrada, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nova_vacina->nome, nova_vacina->lote, nova_vacina->fab, nova_vacina->val);
 
-
-
-
-
     nova_vacina->prox = primeiro->primeira_vac;
     primeiro->primeira_vac = nova_vacina;
 
@@ -88,15 +84,14 @@ void insere_vacina_txt(Lista_Vac* primeiro_no){
     fclose(entrada);*/
 }
 
-
-
-void listar_vacinas() {
+void copiar_vacinas(Lista_Vac* lista) {
     FILE* entrada;
     char linha[100];
     char nome[50];
     char lote[50];
     char data_fab[50];
     char data_val[50];
+    int i = 0;
 
     entrada = fopen("vacinas.txt", "rt");
 
@@ -107,8 +102,19 @@ void listar_vacinas() {
 
     while(fgets(linha, 100, entrada) != NULL) {
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
-
-        printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
+        if(i == 0) {
+            lista->primeira_vac->nome = nome;
+            lista->primeira_vac->lote = lote;
+            lista->primeira_vac->fab = data_fab;
+            lista->primeira_vac->val = data_val;
+        }
+        else {
+            lista->primeira_vac->nome = nome;
+            lista->primeira_vac->lote = lote;
+            lista->primeira_vac->fab = data_fab;
+            lista->primeira_vac->val = data_val;
+        }
+        i++;
     }
 
     printf("\n");
