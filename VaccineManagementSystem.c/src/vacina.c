@@ -163,25 +163,81 @@ void Remove_Vacina(){
         exit(1);
     }
     while(rascunho->prox != NULL){
-        if(rascunho->nome != nome_deleta && rascunho->lote != lote_deleta){
+        if((strcmp(rascunho->nome, nome_deleta) != 0) && (strcmp(rascunho->lote, lote_deleta) != 0)) {
             fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
             anterior = rascunho;
             rascunho = rascunho->prox;
         }
-        else if(rascunho->prox == NULL && rascunho->nome == nome_deleta && rascunho->lote == nome_deleta){
+        else if(rascunho->prox == NULL && (strcmp(rascunho->nome, nome_deleta) == 0) && (strcmp(rascunho->lote, nome_deleta) == 0)) {
             anterior->prox = NULL;
             free(rascunho);
         }
-        else if(rascunho->nome == nome_deleta && rascunho->lote == nome_deleta){
+        else if((strcmp(rascunho->nome, nome_deleta) == 0) && (strcmp(rascunho->lote, lote_deleta) == 0)) {
             anterior->prox = rascunho->prox;
             free(rascunho);
             rascunho = anterior->prox;
         }
 
     }
-    fclose(novo_arquivo);
 
+    fclose(novo_arquivo);
 }
+
+void Editar_Vacina(){
+    char linha[100], nome_edita[50];
+    printf("Insira o nome da vacina que você deseja editar:\n");
+    scanf(" %[^\n]s", nome_edita);
+    Vacina* primeira_celula = NULL;
+    FILE* arquivo_entrada = fopen("vacinas.txt", "r");
+    if(arquivo_entrada == NULL){
+        printf("Erro ao abrir os arquivos de vacinas.\n");
+        exit(1);
+    }
+
+    while(fgets(linha, 100, arquivo_entrada) != NULL){
+        Vacina* nova_vac = malloc(sizeof(Vacina));
+        if(nova_vac == NULL){
+            printf("Erro na alocação de memória.");
+            exit(1);
+        }
+        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nova_vac->nome, nova_vac->lote, nova_vac->fab, nova_vac->val);
+        nova_vac->prox = primeira_celula;
+        primeira_celula = nova_vac;
+    }
+
+    fclose(arquivo_entrada);
+    
+    Vacina* rascunho = primeira_celula;
+    Vacina* anterior = NULL;
+    FILE* novo_arquivo = fopen("vacinas.txt", "w");
+    if(novo_arquivo == NULL){
+        printf("Erro ao abrir o arquivo de entrada.\n");
+        exit(1);
+    }
+    while(rascunho->prox != NULL){
+        if(rascunho->nome != nome_edita){
+            fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
+            anterior = rascunho;
+            rascunho = rascunho->prox;
+        }
+        else if(strcmp(rascunho->nome, nome_edita) == 0) {
+            printf("Digite o novo lote da vacina: ");
+            scanf(" %[^\n]s", rascunho->lote);
+            printf("Digite a nova data de fabricação da vacina: ");
+            scanf(" %[^\n]s", rascunho->fab);
+            printf("Digite a nova validade da vacina: ");
+            scanf(" %[^\n]s", rascunho->val);
+
+            fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
+            anterior = rascunho;
+            free(rascunho);
+            rascunho = anterior;
+        }
+    }
+
+    fclose(novo_arquivo);
+}
+
 
 void Lista_Vacina(){
     FILE* entradas = fopen("vacinas.txt", "r");
