@@ -185,7 +185,11 @@ Vacina* buscar_vacina(char nome_vac[], char num_lote[]) {
 }
 
 void Remove_Vacina(){
-    char linha[100], entrada[100];
+    char linha[100], nome_deleta[50], lote_deleta[50];
+    printf("Insira o nome da vacina que você deseja remover:\n");
+    scanf(" %[^\n]", nome_deleta);
+    printf("Insira o lote da vacina que você deseja remover:\n");
+    scanf(" %[^\n]", lote_deleta);
     Vacina* primeira_celula = NULL;
     FILE* arquivo_entrada = fopen("vacinas.txt", "r");
     if(arquivo_entrada == NULL){
@@ -207,8 +211,30 @@ void Remove_Vacina(){
     fclose(arquivo_entrada);
     
     Vacina* rascunho = primeira_celula;
-    while(rascunho->prox != NULL){
-        printf("Nome Vac: %s\n", rascunho->nome);
-        rascunho = rascunho->prox;
+    Vacina* anterior = NULL;
+    FILE* novo_arquivo = fopen("vacinas.txt", "w");
+    if(novo_arquivo == NULL){
+        printf("Erro ao abrir o arquivo de entrada.\n");
+        exit(1);
     }
+    while(rascunho->prox != NULL){
+        if(rascunho->nome != nome_deleta && rascunho->lote != lote_deleta){
+            fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
+            anterior = rascunho;
+            rascunho = rascunho->prox;
+        }
+        else if(rascunho->prox == NULL && rascunho->nome == nome_deleta && rascunho->lote == nome_deleta){
+            anterior->prox = NULL;
+            free(rascunho);
+        }
+        else if(rascunho->nome == nome_deleta && rascunho->lote == nome_deleta){
+            anterior->prox = rascunho->prox;
+            free(rascunho);
+            rascunho = anterior->prox;
+        }
+
+    }
+    fclose(novo_arquivo);
+
 }
+
