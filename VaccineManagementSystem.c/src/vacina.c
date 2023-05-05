@@ -151,9 +151,16 @@ void copiar_vacinas(Lista_Vac* lista) {
 }
 */
 
-Vacina* buscar_vacina(char nome_vac[], char num_lote[]) {
+Vacina* buscar_vacina() {
     FILE* entrada;
     Vacina* rascunho = NULL;
+
+    char nome_vac[50];
+    char num_lote[50];
+    printf("Digite o nome da vacina: ");
+    scanf(" %[^\n]s", nome_vac);
+    printf("Digite o numero do lote: ");
+    scanf(" %[^\n]s", num_lote);
 
     char nome[50];
     char lote[50];
@@ -237,4 +244,3 @@ void Remove_Vacina(){
     fclose(novo_arquivo);
 
 }
-

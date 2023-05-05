@@ -32,13 +32,7 @@ int main(){
             break;
             case 4:
             printf("\tBuscar Vacinas\t\n");
-            char nome_vac[50];
-            char num_lote[50];
-            printf("Digite o nome da vacina: ");
-            scanf(" %[^\n]s", nome_vac);
-            printf("Digite o numero do lote: ");
-            scanf(" %[^\n]s", num_lote);
-            Vacina* rascunho = buscar_vacina(nome_vac, num_lote);
+            Vacina* rascunho = buscar_vacina();
             printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
             break;
             case 5:
