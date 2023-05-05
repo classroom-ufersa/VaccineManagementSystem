@@ -116,41 +116,6 @@ void copiar_vacinas(Lista_Vac* lista) {
     fclose(entrada);
 }
 
-/*Lista_Vac* Insere_Vacina(Lista_Vac* lista){
-    FILE* entrada;
-    Lista_Vac* insere_vac = (Lista_Vac*) malloc(sizeof(Lista_Vac));
-
-    entrada = fopen("vacinas.txt", "at");
-    if(entrada == NULL) {
-        printf("ERRO!\n");
-        exit(1);
-    }
-
-    if(insere_vac == NULL){
-        printf("Erro ao alocar memória.\n");
-        exit(1);
-    }
-    printf("Insira o nome da vacina:\n");
-    scanf(" %[^\n]", insere_vac->vacinas->nome);
-    printf("Insira o lote da vacina %s:\n", insere_vac->vacinas->nome);
-    scanf("%i", &insere_vac->vacinas->lote);
-    printf("Insira a data de fabricação da vacina %s:\n", insere_vac->vacinas->nome);
-    scanf(" %[^\n]", insere_vac->vacinas->data_fab);
-    printf("Insira a data de validade da vacina %s:\n", insere_vac->vacinas->nome);
-    scanf(" %[^\n]", insere_vac->vacinas->data_val);
-
-    fprintf(entrada, "Nome: %s\tLote: %d\tData de Fabricacao: %s\tData de Validade: %s\n", insere_vac->vacinas->nome, insere_vac->vacinas->lote, insere_vac->vacinas->data_fab, insere_vac->vacinas->data_val);
-
-    fclose(entrada);
-
-    insere_vac->prox = NULL;
-    lista->prox = insere_vac;
-    lista = lista->prox;
-
-    return(insere_vac);
-}
-*/
-
 void buscar_vacina() {
     FILE* entrada;
 
@@ -170,21 +135,19 @@ void buscar_vacina() {
     entrada = fopen("vacinas.txt", "r");
     if(entrada == NULL) {
         printf("Nenhuma Vacina Cadastrada!\n");
-        return;
+        return(NULL);
     }
 
     while(fgets(linha, 100, entrada) != NULL) {
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
 
         if((strcmp(nome, busca_vac) == 0) && (strcmp(lote, busca_lote) == 0)) {
-            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n\n", nome, lote, data_fab, data_val);
+            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
 
-            fclose(entrada);
-            return;
+            break;
         }
     }
-
-    printf("\nVacina não encontrada!\n");
+    fclose(entrada);
 }
 
 void Remove_Vacina(){
@@ -239,4 +202,19 @@ void Remove_Vacina(){
     }
     fclose(novo_arquivo);
 
+}
+
+void Lista_Vacina(){
+    FILE* entradas = fopen("vacinas.txt", "r");
+    char linha[100];
+    if(entradas == NULL){
+        printf("Erro ao abrir o arquivo de vacinas.\n");
+        exit(1);
+    }
+    Vacina* rascunho = NULL;
+    while(fgets(linha, 100, entradas) != NULL){
+        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+        printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+    }
+    fclose(entradas);
 }

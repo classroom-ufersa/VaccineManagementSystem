@@ -28,7 +28,8 @@ int main(){
             Remove_Vacina();
             break;
             case 3:
-            printf("\tListar Vacinas\t\n");      
+            printf("\tListar Vacinas\t\n");  
+            Lista_Vacina();    
             break;
             case 4:
             printf("\tBuscar Vacinas\t\n");
