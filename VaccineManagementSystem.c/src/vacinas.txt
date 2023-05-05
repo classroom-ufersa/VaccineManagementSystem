@@ -1,4 +1,4 @@
 Nome: CoronaVac	Lote: 09321	Data de Fabricacao: 22-04-2022	Data de Validade: 22-04-2023
 Nome: Pfizer	Lote: 05879	Data de Fabricacao: 04-01-2023	Data de Validade: 04-01-2024
 Nome: Sputnik	Lote: 65478	Data de Fabricacao: 23-06-2022	Data de Validade: 23-06-2023
-Nome: ButanVac	Lote: 56987	Data de Fabricacao: 25-05-2022	Data de Validade: 25-05-2023
+Nome: ButanVac	Lote: 56987	Data de Fabricacao: 25-05-2022	Data de Validade: 25-05-2023B

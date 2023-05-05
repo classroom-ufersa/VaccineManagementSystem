@@ -168,7 +168,7 @@ Vacina* buscar_vacina() {
     char data_val[50];
     char linha[100];
 
-    entrada = fopen("vacinas.txt", "rt");
+    entrada = fopen("vacinas.txt", "r");
     if(entrada == NULL) {
         printf("Nenhuma Vacina Cadastrada!\n");
         return(NULL);
@@ -183,13 +183,13 @@ Vacina* buscar_vacina() {
             strcpy(rascunho->fab, data_fab);
             strcpy(rascunho->val, data_val);
             fclose(entrada);
-            free(entrada);
+            //free(entrada);
 
             return(rascunho);
         }
     }
     fclose(entrada);
-    free(entrada);
+    //free(entrada);
     return(NULL);
 }
 
