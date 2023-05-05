@@ -114,7 +114,7 @@ void buscar_vacina() {
     entrada = fopen("vacinas.txt", "r");
     if(entrada == NULL) {
         printf("Nenhuma Vacina Cadastrada!\n");
-        return(NULL);
+        return;
     }
 
     while(fgets(linha, 100, entrada) != NULL) {
@@ -168,7 +168,7 @@ void Remove_Vacina(){
             anterior = rascunho;
             rascunho = rascunho->prox;
         }
-        else if(rascunho->prox == NULL && (strcmp(rascunho->nome, nome_deleta) == 0) && (strcmp(rascunho->lote, nome_deleta) == 0)) {
+        else if(rascunho->prox == NULL && (strcmp(rascunho->nome, nome_deleta) == 0) && (strcmp(rascunho->lote, lote_deleta) == 0)) {
             anterior->prox = NULL;
             free(rascunho);
         }
