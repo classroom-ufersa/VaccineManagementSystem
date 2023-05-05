@@ -63,27 +63,6 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
     return(NULL);
 }
 
-void insere_vacina_txt(Lista_Vac* primeiro_no){
-    Vacina* Rascunho = primeiro_no->primeira_vac;
-    while(Rascunho->prox != NULL){
-        printf("%s\n", Rascunho->nome);
-        Rascunho = Rascunho->prox;
-    }
-    Rascunho = NULL;
-    free(Rascunho);
-    /*FILE* entrada = fopen("/home/abner/Desktop/Projeto/VaccineManagementSystem/VaccineManagementSystem.c/src/vacina.txt", "a+");
-    if(entrada == NULL){
-        printf("Erro ao abrir o arquivo.\n");
-    }
-    Vacina* ponteiro = primeiro_no->primeira;
-    while(ponteiro->prox != NULL){
-        fprintf(entrada, "\nNome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", ponteiro->nome, ponteiro->lote,ponteiro->fab,ponteiro->val);
-        ponteiro = ponteiro->prox;
-    }
-    ponteiro = NULL;
-    free(ponteiro);
-    fclose(entrada);*/
-}
 
 void copiar_vacinas(Lista_Vac* lista) {
     FILE* entrada;
