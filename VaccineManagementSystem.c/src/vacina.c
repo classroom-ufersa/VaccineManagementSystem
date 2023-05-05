@@ -155,12 +155,12 @@ Vacina* buscar_vacina() {
     FILE* entrada;
     Vacina* rascunho = NULL;
 
-    char nome_vac[50];
-    char num_lote[50];
+    char busca_vac[50];
+    char busca_lote[50];
     printf("Digite o nome da vacina: ");
-    scanf(" %[^\n]s", nome_vac);
+    scanf(" %[^\n]s", busca_vac);
     printf("Digite o numero do lote: ");
-    scanf(" %[^\n]s", num_lote);
+    scanf(" %[^\n]s", busca_lote);
 
     char nome[50];
     char lote[50];
@@ -177,11 +177,13 @@ Vacina* buscar_vacina() {
     while(fgets(linha, 100, entrada) != NULL) {
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
 
-        if((strcmp(nome, nome_vac) == 0) && (strcmp(lote, num_lote) == 0)) {
+        if((strcmp(nome, busca_vac) == 0) && (strcmp(lote, busca_lote) == 0)) {
             strcpy(rascunho->nome, nome);
             strcpy(rascunho->lote, lote);
             strcpy(rascunho->fab, data_fab);
             strcpy(rascunho->val, data_val);
+            fclose(entrada);
+            free(entrada);
 
             return(rascunho);
         }
