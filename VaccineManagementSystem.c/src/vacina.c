@@ -170,19 +170,21 @@ void buscar_vacina() {
     entrada = fopen("vacinas.txt", "r");
     if(entrada == NULL) {
         printf("Nenhuma Vacina Cadastrada!\n");
-        return(NULL);
+        return;
     }
 
     while(fgets(linha, 100, entrada) != NULL) {
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
 
         if((strcmp(nome, busca_vac) == 0) && (strcmp(lote, busca_lote) == 0)) {
-            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
+            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n\n", nome, lote, data_fab, data_val);
 
-            break;
+            fclose(entrada);
+            return;
         }
     }
-    fclose(entrada);
+
+    printf("\nVacina não encontrada!\n");
 }
 
 void Remove_Vacina(){
