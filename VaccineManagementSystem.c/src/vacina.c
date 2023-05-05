@@ -179,5 +179,36 @@ Vacina* buscar_vacina(char nome_vac[], char num_lote[]) {
             return(rascunho);
         }
     }
+    fclose(entrada);
+    free(entrada);
     return(NULL);
+}
+
+void Remove_Vacina(){
+    char linha[100], entrada[100];
+    Vacina* primeira_celula = NULL;
+    FILE* arquivo_entrada = fopen("vacinas.txt", "r");
+    if(arquivo_entrada == NULL){
+        printf("Erro ao abrir os arquivos de vacinas.\n");
+        exit(1);
+    }
+
+    while(fgets(linha, 100, arquivo_entrada) != NULL){
+        Vacina* nova_vac = malloc(sizeof(Vacina));
+        if(nova_vac == NULL){
+            printf("Erro na alocação de memória.");
+            exit(1);
+        }
+        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nova_vac->nome, nova_vac->lote, nova_vac->fab, nova_vac->val);
+        nova_vac->prox = primeira_celula;
+        primeira_celula = nova_vac;
+    }
+
+    fclose(arquivo_entrada);
+    
+    Vacina* rascunho = primeira_celula;
+    while(rascunho->prox != NULL){
+        printf("Nome Vac: %s\n", rascunho->nome);
+        rascunho = rascunho->prox;
+    }
 }
