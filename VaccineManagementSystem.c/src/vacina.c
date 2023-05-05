@@ -177,7 +177,7 @@ void buscar_vacina() {
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
 
         if((strcmp(nome, busca_vac) == 0) && (strcmp(lote, busca_lote) == 0)) {
-            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
+            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
 
             break;
         }
