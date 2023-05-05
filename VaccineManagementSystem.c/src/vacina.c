@@ -151,9 +151,8 @@ void copiar_vacinas(Lista_Vac* lista) {
 }
 */
 
-Vacina* buscar_vacina() {
+void buscar_vacina() {
     FILE* entrada;
-    Vacina* rascunho = NULL;
 
     char busca_vac[50];
     char busca_lote[50];
@@ -178,19 +177,12 @@ Vacina* buscar_vacina() {
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
 
         if((strcmp(nome, busca_vac) == 0) && (strcmp(lote, busca_lote) == 0)) {
-            strcpy(rascunho->nome, nome);
-            strcpy(rascunho->lote, lote);
-            strcpy(rascunho->fab, data_fab);
-            strcpy(rascunho->val, data_val);
-            fclose(entrada);
-            //free(entrada);
+            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
 
-            return(rascunho);
+            break;
         }
     }
     fclose(entrada);
-    //free(entrada);
-    return(NULL);
 }
 
 void Remove_Vacina(){

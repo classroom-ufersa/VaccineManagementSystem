@@ -32,8 +32,7 @@ int main(){
             break;
             case 4:
             printf("\tBuscar Vacinas\t\n");
-            Vacina* rascunho = buscar_vacina();
-            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+            buscar_vacina();
             break;
             case 5:
             printf("\tAplicação de Vacina em uma Pessoa\t\n");
