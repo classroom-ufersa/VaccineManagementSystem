@@ -254,5 +254,7 @@ void Lista_Vacina(){
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
         printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
     }
+
+    printf("\n");
     fclose(entradas);
 }

@@ -43,8 +43,8 @@ void listar_pessoas() {
     entrada = fopen("pessoas.txt", "rt");
 
     if(entrada == NULL) {
-        printf("ERRO!\n");
-        exit(1);
+        printf("Pessoas não Cadastradas!\n");
+        return;
     }
 
     while(fgets(linha, 100, entrada) != NULL) {
