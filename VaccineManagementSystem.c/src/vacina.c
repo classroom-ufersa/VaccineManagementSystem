@@ -162,7 +162,7 @@ void Remove_Vacina(){
         printf("Erro ao abrir o arquivo de entrada.\n");
         exit(1);
     }
-    while(rascunho->prox != NULL){
+    do{
         if((strcmp(rascunho->nome, nome_deleta) != 0) && (strcmp(rascunho->lote, lote_deleta) != 0)) {
             fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
             anterior = rascunho;
@@ -177,8 +177,13 @@ void Remove_Vacina(){
             free(rascunho);
             rascunho = anterior->prox;
         }
+        if(rascunho->prox == NULL){
+            if((strcmp(rascunho->nome, nome_deleta) != 0) && (strcmp(rascunho->lote, lote_deleta) != 0)) {
+            fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
+        }
+        }
 
-    }
+    } while(rascunho->prox != NULL);
 
     fclose(novo_arquivo);
 }

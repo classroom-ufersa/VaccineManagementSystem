@@ -61,7 +61,7 @@ int main(){
         }
     }
     
-    free(pessoa);
+    //free(pessoa);
 
     return 0;
 }
