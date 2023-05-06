@@ -229,6 +229,7 @@ void Editar_Vacina(){
         exit(1);
     }
     do{
+        escolha = 0;
         if((strcmp(rascunho->nome, nome_edita) != 0)) {
             fprintf(novo_arquivo, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
             rascunho = rascunho->prox;
