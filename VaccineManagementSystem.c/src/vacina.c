@@ -142,8 +142,8 @@ void Remove_Vacina(){
     Vacina* primeira_celula = NULL;
     FILE* arquivo_entrada = fopen("vacinas.txt", "r");
     if(arquivo_entrada == NULL){
-        printf("Erro ao abrir os arquivos de vacinas.\n");
-        exit(1);
+        printf("Nenhuma Vacina Cadastrada!\n");
+        return;
     }
 
     while(fgets(linha, 100, arquivo_entrada) != NULL){
@@ -198,14 +198,15 @@ void Remove_Vacina(){
 }
 
 void Editar_Vacina(){
+    int opcao, escolha;
     char linha[100], nome_edita[50];
     printf("Insira o nome da vacina que você deseja editar:\n");
     scanf(" %[^\n]s", nome_edita);
     Vacina* primeira_celula = NULL;
     FILE* arquivo_entrada = fopen("vacinas.txt", "r");
     if(arquivo_entrada == NULL){
-        printf("Erro ao abrir os arquivos de vacinas.\n");
-        exit(1);
+        printf("Nenhuma Vacina Cadastrada!\n");
+        return;
     }
 
     while(fgets(linha, 100, arquivo_entrada) != NULL){
@@ -222,32 +223,49 @@ void Editar_Vacina(){
     fclose(arquivo_entrada);
     
     Vacina* rascunho = primeira_celula;
-    Vacina* anterior = NULL;
     FILE* novo_arquivo = fopen("vacinas.txt", "w");
     if(novo_arquivo == NULL){
         printf("Erro ao abrir o arquivo de entrada.\n");
         exit(1);
     }
-    while(rascunho->prox != NULL){
-        if(rascunho->nome != nome_edita){
-            fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
-            anterior = rascunho;
+    do{
+        if((strcmp(rascunho->nome, nome_edita) != 0)) {
+            fprintf(novo_arquivo, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
             rascunho = rascunho->prox;
         }
-        else if(strcmp(rascunho->nome, nome_edita) == 0) {
-            printf("Digite o novo lote da vacina: ");
-            scanf(" %[^\n]s", rascunho->lote);
-            printf("Digite a nova data de fabricação da vacina: ");
-            scanf(" %[^\n]s", rascunho->fab);
-            printf("Digite a nova validade da vacina: ");
-            scanf(" %[^\n]s", rascunho->val);
-
-            fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
-            anterior = rascunho;
-            free(rascunho);
-            rascunho = anterior;
+        else{
+            while(escolha != 2){
+                printf("Vacina Atual.\nNome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+                printf("Digite o que deseja editar:\n1-Nome\n2-Lote\n3-Data de Fabricação\n4-Data de Validade\n");
+                scanf("%d", &opcao);
+                switch(opcao) {
+                    case 1:
+                    printf("Digite o novo nome da vacina: ");
+                    scanf(" %[^\n]s", rascunho->nome);
+                    break;
+                    case 2:
+                    printf("Digite o novo lote da vacina: ");
+                    scanf(" %[^\n]s", rascunho->lote);
+                    break;
+                    case 3:
+                    printf("Digite a nova data de fabricação da vacina: ");
+                    scanf(" %[^\n]s", rascunho->fab);
+                    break;
+                    case 4:
+                    printf("Digite a nova data de validade da vacina: ");
+                    scanf(" %[^\n]s", rascunho->val);
+                    break;
+                }
+                printf("Deseja fazer mais alguma alteração?\n");
+                printf("1-Sim\n2-Não: ");
+                scanf("%d", &escolha);
+            } 
+        
+            fprintf(novo_arquivo, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
+            rascunho = rascunho->prox;
         }
-    }
+
+    } while(rascunho->prox != NULL);
 
     fclose(novo_arquivo);
 }

@@ -11,7 +11,6 @@ int main(){
     Pessoa* pessoa;
     int Opcao;
 
-
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 10){
         printf("Digite a opção desejada:\n");
@@ -39,7 +38,8 @@ int main(){
             printf("\tAplicação de Vacina em uma Pessoa\t\n");
             break;
             case 6:
-            printf("\tEditar Vacina Cadastrada\t\n");    
+            printf("\tEditar Vacina Cadastrada\t\n");  
+            Editar_Vacina(); 
             break;
             case 7:
             printf("\tConsultar Quantitativo de Pessoas que Aplicaram Determinada Vacina\t\n");
