@@ -177,14 +177,19 @@ void Remove_Vacina(){
             free(rascunho);
         }
         else if((strcmp(rascunho->nome, nome_deleta) == 0) && (strcmp(rascunho->lote, lote_deleta) == 0)) {
-            anterior->prox = rascunho->prox;
-            free(rascunho);
-            rascunho = anterior->prox;
+            if(anterior == NULL){
+                rascunho = rascunho->prox; 
+            }
+            else{
+                anterior->prox = rascunho->prox;
+                free(rascunho);
+                rascunho = anterior->prox;
+            }
         }
         if(rascunho->prox == NULL){
             if((strcmp(rascunho->nome, nome_deleta) != 0) && (strcmp(rascunho->lote, lote_deleta) != 0)) {
-            fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
-        }
+                fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
+            }
         }
 
     } while(rascunho->prox != NULL);
