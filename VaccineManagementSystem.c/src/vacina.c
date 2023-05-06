@@ -123,9 +123,13 @@ void buscar_vacina() {
         if((strcmp(nome, busca_vac) == 0) && (strcmp(lote, busca_lote) == 0)) {
             printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
 
-            break;
+            fclose(entrada);
+
+            return;
         }
     }
+    printf("Vacina não Cadastrada!\n");
+
     fclose(entrada);
 }
 
