@@ -242,14 +242,17 @@ void Editar_Vacina(){
 void Lista_Vacina(){
     FILE* entradas = fopen("vacinas.txt", "r");
     char linha[100];
+    char nome[50];
+    char lote[50];
+    char data_fab[50];
+    char data_val[50];
     if(entradas == NULL){
-        printf("Erro ao abrir o arquivo de vacinas.\n");
-        exit(1);
+        printf("Vacinas não Cadastradas!\n");
+        return;
     }
-    Vacina* rascunho = NULL;
     while(fgets(linha, 100, entradas) != NULL){
-        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
-        printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
+        printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
     }
     fclose(entradas);
 }
