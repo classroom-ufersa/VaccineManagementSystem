@@ -14,15 +14,6 @@ typedef struct lista_vac{
     Vacina* primeira_vac;
 }Lista_Vac; 
 
-Vacina* inicializa_vacina(){
-    Vacina* vacina = malloc(sizeof(Vacina));
-    if(vacina == NULL){
-        printf("Erro ao alocar memória.\n");
-    }
-    vacina->prox = NULL;
-    return(vacina);
-}
-
 Lista_Vac* inicializa_lista(){
     Lista_Vac* primeiro = malloc(sizeof(Lista_Vac));
     if(primeiro == NULL){
