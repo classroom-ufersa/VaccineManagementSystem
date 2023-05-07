@@ -54,7 +54,6 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
     return(NULL);
 }
 
-
 void copiar_vacinas(Lista_Vac* lista) {
     FILE* entrada;
     char linha[100];
@@ -126,6 +125,7 @@ void buscar_vacina() {
 
 void Remove_Vacina(){
     char linha[100], nome_deleta[50], lote_deleta[50];
+    int contador = 0;
     printf("Insira o nome da vacina que você deseja remover:\n");
     scanf(" %[^\n]", nome_deleta);
     printf("Insira o lote da vacina que você deseja remover:\n");
@@ -165,16 +165,19 @@ void Remove_Vacina(){
         }
         else if(rascunho->prox == NULL && (strcmp(rascunho->nome, nome_deleta) == 0) && (strcmp(rascunho->lote, lote_deleta) == 0)) {
             anterior->prox = NULL;
+            contador++;
             free(rascunho);
         }
         else if((strcmp(rascunho->nome, nome_deleta) == 0) && (strcmp(rascunho->lote, lote_deleta) == 0)) {
             if(anterior == NULL){
+                contador++;
                 rascunho = rascunho->prox; 
             }
             else{
                 anterior->prox = rascunho->prox;
                 free(rascunho);
                 rascunho = anterior->prox;
+                contador++;
             }
         }
         if(rascunho->prox == NULL){
@@ -183,13 +186,18 @@ void Remove_Vacina(){
             }
         }
 
-    } while(rascunho->prox != NULL);
+    } 
+    while(rascunho->prox != NULL);
+
+    if(contador == 0)
+        printf("Esta vacina não está cadastrada!\n");
 
     fclose(novo_arquivo);
 }
 
 void Editar_Vacina(){
     int opcao, escolha;
+    int contador = 0;
     char linha[100], nome_edita[50];
     printf("Insira o nome da vacina que você deseja editar:\n");
     scanf(" %[^\n]s", nome_edita);
@@ -230,6 +238,7 @@ void Editar_Vacina(){
                 printf("Vacina Atual.\nNome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
                 printf("Digite o que deseja editar:\n1-Nome\n2-Lote\n3-Data de Fabricação\n4-Data de Validade\n");
                 scanf("%d", &opcao);
+                contador++;
                 switch(opcao) {
                     case 1:
                     printf("Digite o novo nome da vacina: ");
@@ -257,7 +266,10 @@ void Editar_Vacina(){
             rascunho = rascunho->prox;
         }
 
-    } while(rascunho->prox != NULL);
+    } 
+    while(rascunho->prox != NULL);
+    if(contador == 0)
+        printf("Esta vacina não está cadastrada!\n");
 
     fclose(novo_arquivo);
 }
