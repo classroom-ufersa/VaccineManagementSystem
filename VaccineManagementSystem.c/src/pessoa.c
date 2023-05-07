@@ -10,7 +10,7 @@ typedef struct pessoa{
     struct pessoa* prox;
     //Cartao de vacina
 }Pessoa;
-
+ 
 Pessoa* cria_pessoa() {
     return(NULL);
 }
@@ -20,6 +20,10 @@ Pessoa* add_pessoa() {
     FILE* entrada;
 
     entrada = fopen("pessoas.txt", "at");
+    if(entrada == NULL) {
+        printf("\nERRO!\n");
+        exit(1);
+    }
 
     printf("Informe o nome da pessoa: ");
     scanf(" %[^\n]s", nova->nome);

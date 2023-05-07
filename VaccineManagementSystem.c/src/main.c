@@ -8,7 +8,6 @@
 
 int main(){
     Lista_Vac* lista = inicializa_lista();
-    Pessoa* pessoa;
     int Opcao;
 
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
@@ -46,8 +45,8 @@ int main(){
             break;
             case 8:
             printf("\tAdicionar Pessoa\t\n");
-            pessoa = cria_pessoa();
-            pessoa = add_pessoa();
+            cria_pessoa();
+            add_pessoa();
             //função de adicionar pessoa
             break;
             case 9:
@@ -71,8 +70,6 @@ int main(){
             break;
         }
     }
-    
-    //free(pessoa);
 
     return 0;
 }
