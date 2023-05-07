@@ -65,7 +65,7 @@ void copiar_vacinas(Lista_Vac* lista) {
     entrada = fopen("vacinas.txt", "rt");
 
     if(entrada == NULL) {
-        printf("Banco de Dados não existe!\n");
+        printf("Nenhuma Vacina Cadastrada!\n");
         return;
     }
 
@@ -103,7 +103,7 @@ void buscar_vacina() {
 
     entrada = fopen("vacinas.txt", "r");
     if(entrada == NULL) {
-        printf("Nenhuma Vacina Cadastrada!\n");
+        printf("Nenhuma Vacina Cadastrada!\n\n");
         return;
     }
 
@@ -118,7 +118,7 @@ void buscar_vacina() {
             return;
         }
     }
-    printf("Vacina não Cadastrada!\n");
+    printf("Vacina não Cadastrada!\n\n");
 
     fclose(entrada);
 }
@@ -133,14 +133,14 @@ void Remove_Vacina(){
     Vacina* primeira_celula = NULL;
     FILE* arquivo_entrada = fopen("vacinas.txt", "r");
     if(arquivo_entrada == NULL){
-        printf("Nenhuma Vacina Cadastrada!\n");
+        printf("Nenhuma Vacina Cadastrada!\n\n");
         return;
     }
 
     while(fgets(linha, 100, arquivo_entrada) != NULL){
         Vacina* nova_vac = malloc(sizeof(Vacina));
         if(nova_vac == NULL){
-            printf("Erro na alocação de memória.");
+            printf("Erro na alocação de memória!\n");
             exit(1);
         }
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nova_vac->nome, nova_vac->lote, nova_vac->fab, nova_vac->val);
@@ -154,7 +154,7 @@ void Remove_Vacina(){
     Vacina* anterior = NULL;
     FILE* novo_arquivo = fopen("vacinas.txt", "w");
     if(novo_arquivo == NULL){
-        printf("Erro ao abrir o arquivo de entrada.\n");
+        printf("Erro ao abrir o arquivo de entrada!\n");
         exit(1);
     }
     do{
@@ -190,7 +190,7 @@ void Remove_Vacina(){
     while(rascunho->prox != NULL);
 
     if(contador == 0)
-        printf("Esta vacina não está cadastrada!\n");
+        printf("Esta vacina não está cadastrada!\n\n");
 
     fclose(novo_arquivo);
 }
@@ -204,14 +204,14 @@ void Editar_Vacina(){
     Vacina* primeira_celula = NULL;
     FILE* arquivo_entrada = fopen("vacinas.txt", "r");
     if(arquivo_entrada == NULL){
-        printf("Nenhuma Vacina Cadastrada!\n");
+        printf("Nenhuma Vacina Cadastrada!\n\n");
         return;
     }
 
     while(fgets(linha, 100, arquivo_entrada) != NULL){
         Vacina* nova_vac = malloc(sizeof(Vacina));
         if(nova_vac == NULL){
-            printf("Erro na alocação de memória.");
+            printf("Erro na alocação de memória!\n");
             exit(1);
         }
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nova_vac->nome, nova_vac->lote, nova_vac->fab, nova_vac->val);
@@ -224,7 +224,7 @@ void Editar_Vacina(){
     Vacina* rascunho = primeira_celula;
     FILE* novo_arquivo = fopen("vacinas.txt", "w");
     if(novo_arquivo == NULL){
-        printf("Erro ao abrir o arquivo de entrada.\n");
+        printf("Erro ao abrir o arquivo de entrada!\n");
         exit(1);
     }
     do{
@@ -269,7 +269,7 @@ void Editar_Vacina(){
     } 
     while(rascunho->prox != NULL);
     if(contador == 0)
-        printf("Esta vacina não está cadastrada!\n");
+        printf("Esta vacina não está cadastrada!\n\n");
 
     fclose(novo_arquivo);
 }
@@ -283,7 +283,7 @@ void Lista_Vacina(){
     char data_fab[50];
     char data_val[50];
     if(entradas == NULL){
-        printf("Vacinas não Cadastradas!\n");
+        printf("Vacinas não Cadastradas!\n\n");
         return;
     }
     while(fgets(linha, 100, entradas) != NULL){

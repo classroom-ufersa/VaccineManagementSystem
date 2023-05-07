@@ -65,6 +65,7 @@ int main(){
             break;
             case 12:
             printf("\tBuscar Pessoas\t\n");
+            buscar_pessoa();
             break;
             case 13:
             break;

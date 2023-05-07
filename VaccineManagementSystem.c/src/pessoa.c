@@ -44,7 +44,7 @@ void listar_pessoas() {
     entrada = fopen("pessoas.txt", "rt");
 
     if(entrada == NULL) {
-        printf("Pessoas não Cadastradas!\n");
+        printf("Pessoas não Cadastradas!\n\n");
         return;
     }
 
@@ -69,14 +69,14 @@ void remove_pessoa(){
     Pessoa* primeira_celula = NULL;
     FILE* arquivo_entrada = fopen("pessoas.txt", "r");
     if(arquivo_entrada == NULL){
-        printf("Nenhuma Pessoa Cadastrada!\n");
+        printf("Nenhuma Pessoa Cadastrada!\n\n");
         return;
     }
 
     while(fgets(linha, 100, arquivo_entrada) != NULL){
         Pessoa* nova_pes = malloc(sizeof(Pessoa));
         if(nova_pes == NULL){
-            printf("Erro na alocação de memória.");
+            printf("Erro na alocação de memória!\n");
             exit(1);
         }
         sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d", nova_pes->nome, &nova_pes->idade, &nova_pes->documento);
@@ -90,7 +90,7 @@ void remove_pessoa(){
     Pessoa* anterior = NULL;
     FILE* novo_arquivo = fopen("pessoas.txt", "w");
     if(novo_arquivo == NULL){
-        printf("Erro ao abrir o arquivo de entrada.\n");
+        printf("Erro ao abrir o arquivo de entrada!\n");
         exit(1);
     }
     do{
@@ -125,7 +125,7 @@ void remove_pessoa(){
     } 
     while(rascunho->prox != NULL);
     if(contador == 0)
-        printf("Esta pessoa não está cadastrada!\n");
+        printf("Esta pessoa não está cadastrada!\n\n");
 
     fclose(novo_arquivo);
 }
@@ -138,14 +138,14 @@ void edita_pessoa(){
     Pessoa* primeira_celula = NULL;
     FILE* arquivo_entrada = fopen("pessoas.txt", "r");
     if(arquivo_entrada == NULL){
-        printf("Nenhuma Pessoa Cadastrada!\n");
+        printf("Nenhuma Pessoa Cadastrada!\n\n");
         return;
     }
 
     while(fgets(linha, 100, arquivo_entrada) != NULL){
         Pessoa* nova_pes = malloc(sizeof(Pessoa));
         if(nova_pes == NULL){
-            printf("Erro na alocação de memória.");
+            printf("Erro na alocação de memória!\n");
             exit(1);
         }
         sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d", nova_pes->nome, &nova_pes->idade, &nova_pes->documento);
@@ -158,7 +158,7 @@ void edita_pessoa(){
     Pessoa* rascunho = primeira_celula;
     FILE* novo_arquivo = fopen("pessoas.txt", "w");
     if(novo_arquivo == NULL){
-        printf("Erro ao abrir o arquivo de entrada.\n");
+        printf("Erro ao abrir o arquivo de entrada!\n\n");
         exit(1);
     }
     do {
@@ -199,7 +199,44 @@ void edita_pessoa(){
     } 
     while(rascunho->prox != NULL);
     if(contador == 0)
-        printf("Esta pessoa não está cadastrada!\n");
+        printf("Esta pessoa não está cadastrada!\n\n");
 
     fclose(novo_arquivo);
+}
+
+void buscar_pessoa() {
+    FILE* entrada;
+
+    char busca_pes[50];
+    int busca_doc;
+    printf("Digite o nome da pessoa: ");
+    scanf(" %[^\n]s", busca_pes);
+    printf("Digite o seu numero de documento: ");
+    scanf("%d", &busca_doc);
+
+    char nome[50];
+    int idade;
+    int doc;
+    char linha[100];
+
+    entrada = fopen("pessoas.txt", "r");
+    if(entrada == NULL) {
+        printf("Nenhuma Pessoa Cadastrada!\n\n");
+        return;
+    }
+
+    while(fgets(linha, 100, entrada) != NULL) {
+        sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d", nome, &idade, &doc);
+
+        if((strcmp(nome, busca_pes) == 0) && busca_doc == doc) {
+            printf("Nome: %s\tIdade: %d\tDocumento: %d\n", nome, idade, doc);
+
+            fclose(entrada);
+
+            return;
+        }
+    }
+    printf("Pessoa não Cadastrada!\n\n");
+
+    fclose(entrada);
 }
