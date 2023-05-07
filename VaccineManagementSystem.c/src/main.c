@@ -61,6 +61,7 @@ int main(){
             break;
             case 11:
             printf("\tEditar Pessoa\t\n");
+            edita_pessoa();
             break;
             case 12:
             printf("\tBuscar Pessoas\t\n");
