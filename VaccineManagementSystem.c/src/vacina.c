@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 typedef struct vacina{
     char nome[50];
@@ -37,6 +38,7 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
     }
     printf("Insira o nome da vacina:\n");
     scanf(" %[^\n]s", nova_vacina->nome);
+    nova_vacina->nome[0] = toupper(nova_vacina->nome[0]);
     printf("Insira o lote da vacina %s:\n", nova_vacina->nome);
     scanf(" %[^\n]s", nova_vacina->lote);
     printf("Insira a data de fabricação da vacina %s:\n", nova_vacina->nome);
@@ -243,6 +245,7 @@ void Editar_Vacina(){
                     case 1:
                     printf("Digite o novo nome da vacina: ");
                     scanf(" %[^\n]s", rascunho->nome);
+                    rascunho->nome[0] = toupper(rascunho->nome[0]);
                     break;
                     case 2:
                     printf("Digite o novo lote da vacina: ");

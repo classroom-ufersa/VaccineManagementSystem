@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 typedef struct pessoa{
     char nome[100];
@@ -22,6 +23,7 @@ Pessoa* add_pessoa() {
 
     printf("Informe o nome da pessoa: ");
     scanf(" %[^\n]s", nova->nome);
+    nova->nome[0] = toupper(nova->nome[0]);
     printf("Informe a idade da pessoa: ");
     scanf("%d", &nova->idade);
     printf("Informe o documento da pessoa: ");
@@ -177,6 +179,7 @@ void edita_pessoa(){
                     case 1:
                     printf("Digite o novo nome da pessoa: ");
                     scanf(" %[^\n]s", rascunho->nome);
+                    rascunho->nome[0] = toupper(rascunho->nome[0]);
                     break;
                     case 2:
                     printf("Digite a nova idade da pessoa: ");
