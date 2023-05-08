@@ -15,16 +15,7 @@ typedef struct lista_vac{
     Vacina* primeira_vac;
 }Lista_Vac; 
 
-Lista_Vac* inicializa_lista(){
-    Lista_Vac* primeiro = malloc(sizeof(Lista_Vac));
-    if(primeiro == NULL){
-        printf("Erro ao alocar memória.\n");
-        exit(1);
-    }
-    return(primeiro);
-}
-
-Vacina* adiciona_vacina(Lista_Vac* primeiro){
+Vacina* adiciona_vacina(){
     FILE* entrada;
     entrada = fopen("vacinas.txt", "a+");
     if(entrada == NULL) {
@@ -47,9 +38,6 @@ Vacina* adiciona_vacina(Lista_Vac* primeiro){
     scanf(" %[^\n]s", nova_vacina->val);
 
     fprintf(entrada, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nova_vacina->nome, nova_vacina->lote, nova_vacina->fab, nova_vacina->val);
-
-    nova_vacina->prox = primeiro->primeira_vac;
-    //primeiro->primeira_vac = nova_vacina;
 
     fclose(entrada);
     
