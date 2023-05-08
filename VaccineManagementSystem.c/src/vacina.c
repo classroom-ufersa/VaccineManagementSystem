@@ -18,7 +18,7 @@ Vacina* Banco_Dados() {
     FILE* arquivo_entrada = fopen("vacinas.txt", "r");
     if(arquivo_entrada == NULL){
         printf("Nenhuma Vacina Cadastrada!\n\n");
-        return;
+        return(NULL);
     }
 
     while(fgets(linha, 100, arquivo_entrada) != NULL){
@@ -104,32 +104,13 @@ void buscar_vacina() {
     fclose(entrada);
 }
 
-void Remove_Vacina(){
-    char linha[100], nome_deleta[50], lote_deleta[50];
+void Remove_Vacina(Vacina* primeira_celula){
+    char nome_deleta[50], lote_deleta[50];
     int contador = 0;
     printf("Insira o nome da vacina que você deseja remover:\n");
     scanf(" %[^\n]", nome_deleta);
     printf("Insira o lote da vacina que você deseja remover:\n");
     scanf(" %[^\n]", lote_deleta);
-    Vacina* primeira_celula = NULL;
-    FILE* arquivo_entrada = fopen("vacinas.txt", "r");
-    if(arquivo_entrada == NULL){
-        printf("Nenhuma Vacina Cadastrada!\n\n");
-        return;
-    }
-
-    while(fgets(linha, 100, arquivo_entrada) != NULL){
-        Vacina* nova_vac = malloc(sizeof(Vacina));
-        if(nova_vac == NULL){
-            printf("Erro na alocação de memória!\n");
-            exit(1);
-        }
-        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nova_vac->nome, nova_vac->lote, nova_vac->fab, nova_vac->val);
-        nova_vac->prox = primeira_celula;
-        primeira_celula = nova_vac;
-    }
-
-    fclose(arquivo_entrada);
     
     Vacina* rascunho = primeira_celula;
     Vacina* anterior = NULL;
@@ -178,35 +159,13 @@ void Remove_Vacina(){
     fclose(novo_arquivo);
 }
 
-void Editar_Vacina()
+void Editar_Vacina(Vacina* primeira_celula)
 {
     int opcao, escolha;
     int contador = 0;
-    char linha[100], nome_edita[50];
+    char nome_edita[50];
     printf("Insira o nome da vacina que você deseja editar:\n");
     scanf(" %[^\n]s", nome_edita);
-    Vacina *primeira_celula = NULL;
-    FILE *arquivo_entrada = fopen("vacinas.txt", "r");
-    if (arquivo_entrada == NULL)
-    {
-        printf("Nenhuma Vacina Cadastrada!\n\n");
-        return;
-    }
-
-    while (fgets(linha, 100, arquivo_entrada) != NULL)
-    {
-        Vacina *nova_vac = malloc(sizeof(Vacina));
-        if (nova_vac == NULL)
-        {
-            printf("Erro na alocação de memória!\n");
-            exit(1);
-        }
-        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nova_vac->nome, nova_vac->lote, nova_vac->fab, nova_vac->val);
-        nova_vac->prox = primeira_celula;
-        primeira_celula = nova_vac;
-    }
-
-    fclose(arquivo_entrada);
 
     Vacina *rascunho = primeira_celula;
     FILE *novo_arquivo = fopen("vacinas.txt", "w");
@@ -275,21 +234,17 @@ void Editar_Vacina()
     }
 
 
-void Lista_Vacina(){
+void Lista_Vacina(Vacina* lista){
     FILE* entradas = fopen("vacinas.txt", "r");
-    char linha[100];
-    char nome[50];
-    char lote[50];
-    char data_fab[50];
-    char data_val[50];
     if(entradas == NULL){
         printf("Vacinas não Cadastradas!\n\n");
         return;
     }
-    while(fgets(linha, 100, entradas) != NULL){
-        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
-        printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nome, lote, data_fab, data_val);
+    do {
+        printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", lista->nome, lista->lote, lista->fab, lista->val);
+        lista = lista->prox;
     }
+    while(lista->prox != NULL);
 
     printf("\n");
     fclose(entradas);

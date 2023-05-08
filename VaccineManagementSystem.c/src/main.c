@@ -20,14 +20,17 @@ int main(){
             case 1:
             printf("\tAdicionar Vacina\t\n");
             adiciona_vacina();
+            lista = Banco_Dados();
             break;
             case 2:
             printf("\tRemover Vacina\t\n");
-            Remove_Vacina();
+            Remove_Vacina(lista);
+            lista = Banco_Dados();
             break;
             case 3:
             printf("\tListar Vacinas\t\n");  
-            Lista_Vacina();    
+            lista = Banco_Dados();
+            Lista_Vacina(lista);    
             break;
             case 4:
             printf("\tBuscar Vacinas\t\n");
@@ -38,7 +41,8 @@ int main(){
             break;
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");  
-            Editar_Vacina(); 
+            Editar_Vacina(lista); 
+            lista = Banco_Dados();
             break;
             case 7:
             printf("\tConsultar Quantitativo de Pessoas que Aplicaram Determinada Vacina\t\n");
