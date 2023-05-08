@@ -11,6 +11,32 @@ typedef struct vacina{
     struct vacina* prox;
 }Vacina;
 
+Vacina* Banco_Dados() {
+    char linha[100];
+
+    Vacina* primeira_celula = NULL;
+    FILE* arquivo_entrada = fopen("vacinas.txt", "r");
+    if(arquivo_entrada == NULL){
+        printf("Nenhuma Vacina Cadastrada!\n\n");
+        return;
+    }
+
+    while(fgets(linha, 100, arquivo_entrada) != NULL){
+        Vacina* nova_vac = malloc(sizeof(Vacina));
+        if(nova_vac == NULL){
+            printf("Erro na alocação de memória!\n");
+            exit(1);
+        }
+        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nova_vac->nome, nova_vac->lote, nova_vac->fab, nova_vac->val);
+        nova_vac->prox = primeira_celula;
+        primeira_celula = nova_vac;
+    }
+
+    fclose(arquivo_entrada);
+
+    return(primeira_celula);
+}
+
 Vacina* adiciona_vacina(){
     FILE* entrada;
     entrada = fopen("vacinas.txt", "a+");
