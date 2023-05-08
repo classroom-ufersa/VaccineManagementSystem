@@ -253,7 +253,7 @@ void Lista_Vacina(Vacina* lista){
     fclose(entradas);
 }
 
-void CombSort(int n)
+void CombSort_Vacina(int n)
 {
     int trocado = 1;
     int i, j;
@@ -309,7 +309,7 @@ void CombSort(int n)
     fclose(teste);
 }
 
-int contador()
+int contador_vacina()
 {
 
     FILE *abre;

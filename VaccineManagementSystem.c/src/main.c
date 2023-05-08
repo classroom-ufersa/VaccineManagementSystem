@@ -75,9 +75,11 @@ int main(){
             break;
         }
     }
-    
-    qnt_linhas = contador();
-    CombSort(qnt_linhas);
+
+    qnt_linhas = contador_vacina();
+    CombSort_Vacina(qnt_linhas);
+    qnt_linhas = contador_pessoa();
+    CombSort_Pessoa(qnt_linhas);
 
     return 0;
 }

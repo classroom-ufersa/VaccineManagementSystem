@@ -257,3 +257,83 @@ void buscar_pessoa() {
 
     fclose(entrada);
 }
+
+void CombSort_Pessoa(int n)
+{
+    int trocado = 1;
+    int i, j;
+    char temp[200];
+    int controle = 0;
+    char nomes[10][200];
+    int contador = 0;
+
+    FILE* teste;
+
+    teste = fopen("pessoas.txt", "rt");
+    if(teste == NULL) {
+        printf("\nERRO!\n");
+        exit(1);
+    }
+
+    while(contador < n) {
+        fgets(nomes[contador], 200, teste);
+        contador++;
+    }
+    int lacuna = n;
+
+    while (lacuna > 1 || trocado == 1)
+    { 
+        lacuna = lacuna / 1.3;
+        if (lacuna < 1)
+        {
+            lacuna = 1;
+        }
+
+        trocado = 0;
+        for (i = 0, j = i + lacuna; j < n; i++, j++)
+        { 
+            if (strcmp(nomes[i], nomes[j]) > 0)
+            {
+                strcpy(temp, nomes[i]);
+                strcpy(nomes[i], nomes[j]);
+                strcpy(nomes[j], temp);
+                trocado = 1;
+            }
+        }
+    }
+    fclose(teste);
+
+    teste = fopen("pessoas.txt", "wt");
+
+    while (controle < n)
+    {
+        fprintf(teste, "%s", nomes[controle]);
+        controle++;
+    }
+
+    fclose(teste);
+}
+
+int contador_pessoa()
+{
+
+    FILE *abre;
+    char linha[200];
+    int numLinhas = 0;
+
+    abre = fopen("pessoas.txt", "rt");
+    if (abre == NULL)
+    {
+        printf("ERRO ao abrir o arquivo!");
+        return 0;
+    }
+
+    while (fgets(linha, 200, abre) != NULL)
+    {
+        numLinhas++;
+    }
+
+    fclose(abre);
+
+    return (numLinhas);
+}
