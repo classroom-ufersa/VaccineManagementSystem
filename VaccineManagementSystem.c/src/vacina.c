@@ -199,22 +199,26 @@ void Remove_Vacina(){
     fclose(novo_arquivo);
 }
 
-void Editar_Vacina(){
+void Editar_Vacina()
+{
     int opcao, escolha;
     int contador = 0;
     char linha[100], nome_edita[50];
     printf("Insira o nome da vacina que você deseja editar:\n");
     scanf(" %[^\n]s", nome_edita);
-    Vacina* primeira_celula = NULL;
-    FILE* arquivo_entrada = fopen("vacinas.txt", "r");
-    if(arquivo_entrada == NULL){
+    Vacina *primeira_celula = NULL;
+    FILE *arquivo_entrada = fopen("vacinas.txt", "r");
+    if (arquivo_entrada == NULL)
+    {
         printf("Nenhuma Vacina Cadastrada!\n\n");
         return;
     }
 
-    while(fgets(linha, 100, arquivo_entrada) != NULL){
-        Vacina* nova_vac = malloc(sizeof(Vacina));
-        if(nova_vac == NULL){
+    while (fgets(linha, 100, arquivo_entrada) != NULL)
+    {
+        Vacina *nova_vac = malloc(sizeof(Vacina));
+        if (nova_vac == NULL)
+        {
             printf("Erro na alocação de memória!\n");
             exit(1);
         }
@@ -224,40 +228,46 @@ void Editar_Vacina(){
     }
 
     fclose(arquivo_entrada);
-    
-    Vacina* rascunho = primeira_celula;
-    FILE* novo_arquivo = fopen("vacinas.txt", "w");
-    if(novo_arquivo == NULL){
+
+    Vacina *rascunho = primeira_celula;
+    FILE *novo_arquivo = fopen("vacinas.txt", "w");
+    if (novo_arquivo == NULL)
+    {
         printf("Erro ao abrir o arquivo de entrada!\n");
         exit(1);
     }
-    do{
+    do
+    {
         escolha = 0;
-        if((strcmp(rascunho->nome, nome_edita) != 0)) {
+        if ((strcmp(rascunho->nome, nome_edita) != 0))
+        {
             fprintf(novo_arquivo, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
             rascunho = rascunho->prox;
         }
-        else{
-            while(escolha != 2){
+        else
+        {
+            while (escolha != 2)
+            {
                 printf("Vacina Atual.\nNome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
                 printf("Digite o que deseja editar:\n1-Nome\n2-Lote\n3-Data de Fabricação\n4-Data de Validade\n");
                 scanf("%d", &opcao);
                 contador++;
-                switch(opcao) {
-                    case 1:
+                switch (opcao)
+                {
+                case 1:
                     printf("Digite o novo nome da vacina: ");
                     scanf(" %[^\n]s", rascunho->nome);
                     rascunho->nome[0] = toupper(rascunho->nome[0]);
                     break;
-                    case 2:
+                case 2:
                     printf("Digite o novo lote da vacina: ");
                     scanf(" %[^\n]s", rascunho->lote);
                     break;
-                    case 3:
+                case 3:
                     printf("Digite a nova data de fabricação da vacina: ");
                     scanf(" %[^\n]s", rascunho->fab);
                     break;
-                    case 4:
+                case 4:
                     printf("Digite a nova data de validade da vacina: ");
                     scanf(" %[^\n]s", rascunho->val);
                     break;
@@ -265,21 +275,25 @@ void Editar_Vacina(){
                 printf("Deseja fazer mais alguma alteração?\n");
                 printf("1-Sim\n2-Não: ");
                 scanf("%d", &escolha);
-            } 
-        
-            fprintf(novo_arquivo, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
+            }
+
+            fprintf(novo_arquivo, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
             rascunho = rascunho->prox;
         }
-
-    } 
-    while(rascunho->prox != NULL);
-    if(contador == 0)
+        if (rascunho->prox == NULL)
+        {
+            if ((strcmp(rascunho->nome, nome_edita) != 0))
+            {
+                fprintf(novo_arquivo, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+            }
+        }
+    }while (rascunho->prox != NULL);
+    if (contador == 0){
         printf("Esta vacina não está cadastrada!\n\n");
-
+    }
     contador = 0;
-
     fclose(novo_arquivo);
-}
+    }
 
 
 void Lista_Vacina(){
