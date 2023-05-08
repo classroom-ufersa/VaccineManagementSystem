@@ -11,10 +11,6 @@ typedef struct vacina{
     struct vacina* prox;
 }Vacina;
 
-typedef struct lista_vac{
-    Vacina* primeira_vac;
-}Lista_Vac; 
-
 Vacina* adiciona_vacina(){
     FILE* entrada;
     entrada = fopen("vacinas.txt", "a+");
@@ -42,37 +38,6 @@ Vacina* adiciona_vacina(){
     fclose(entrada);
     
     return(NULL);
-}
-
-void copiar_vacinas(Lista_Vac* lista) {
-    FILE* entrada;
-    char linha[100];
-    char nome[50];
-    char lote[50];
-    char data_fab[50];
-    char data_val[50];
-
-    entrada = fopen("vacinas.txt", "rt");
-
-    if(entrada == NULL) {
-        printf("Nenhuma Vacina Cadastrada!\n");
-        return;
-    }
-
-    while(fgets(linha, 100, entrada) != NULL) {
-        sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
-        
-        strcpy(lista->primeira_vac->nome, nome);
-        strcpy(lista->primeira_vac->lote, lote);
-        strcpy(lista->primeira_vac->fab, data_fab);
-        strcpy(lista->primeira_vac->val, data_val);
-
-        lista->primeira_vac = lista->primeira_vac->prox;
-    }
-
-    printf("\n");
-
-    fclose(entrada);
 }
 
 void buscar_vacina() {
