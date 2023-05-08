@@ -10,9 +10,29 @@ typedef struct pessoa{
     struct pessoa* prox;
     //Cartao de vacina
 }Pessoa;
- 
-Pessoa* cria_pessoa() {
-    return(NULL);
+
+Pessoa* Banco_Dados_Pessoa() {
+    char linha[100];
+
+    Pessoa* primeira_celula = NULL;
+    FILE* arquivo_entrada = fopen("pessoas.txt", "r");
+    if(arquivo_entrada == NULL)
+        return(NULL);
+
+    while(fgets(linha, 100, arquivo_entrada) != NULL){
+        Pessoa* nova_pes = malloc(sizeof(Pessoa));
+        if(nova_pes == NULL){
+            printf("Erro na alocação de memória!\n");
+            exit(1);
+        }
+        sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d\n", nova_pes->nome, &nova_pes->idade, &nova_pes->documento);
+        nova_pes->prox = primeira_celula;
+        primeira_celula = nova_pes;
+    }
+
+    fclose(arquivo_entrada);
+
+    return(primeira_celula);
 }
 
 Pessoa* add_pessoa() {
@@ -40,57 +60,34 @@ Pessoa* add_pessoa() {
     return(nova);
 }
 
-void listar_pessoas() {
-    FILE* entrada;
-    char linha[100];
-    char nome[50];
-    int idade;
-    int doc;
-
-    entrada = fopen("pessoas.txt", "rt");
-
+void listar_pessoas(Pessoa* pessoa) {
+    FILE* entrada = fopen("pessoas.txt", "rt");
     if(entrada == NULL) {
         printf("Pessoas não Cadastradas!\n\n");
         return;
     }
 
-    while(fgets(linha, 100, entrada) != NULL) {
-        sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d", nome, &idade, &doc);
-
-        printf("Nome: %s\tIdade: %d\tDocumento: %d\n", nome, idade, doc);
+    do {
+        printf("Nome: %s\tIdade: %d\tDocumento: %d\n", pessoa->nome, pessoa->idade, pessoa->documento);
+        pessoa = pessoa->prox;
+        if(pessoa->prox == NULL) {
+            printf("Nome: %s\tIdade: %d\tDocumento: %d\n", pessoa->nome, pessoa->idade, pessoa->documento);
+        }
     }
-    printf("\n");
+    while(pessoa->prox != NULL);
 
+    printf("\n");
     fclose(entrada);
 }
 
-void remove_pessoa(){
-    char linha[100], nome_deleta[50];
+void remove_pessoa(Pessoa* primeira_celula){
+    char nome_deleta[50];
     int documento_deleta;
     int contador = 0;
     printf("Insira o nome da pessoa que você deseja remover:\n");
     scanf(" %[^\n]", nome_deleta);
     printf("Insira o documento da pessoa que você deseja remover:\n");
     scanf("%d", &documento_deleta);
-    Pessoa* primeira_celula = NULL;
-    FILE* arquivo_entrada = fopen("pessoas.txt", "r");
-    if(arquivo_entrada == NULL){
-        printf("Nenhuma Pessoa Cadastrada!\n\n");
-        return;
-    }
-
-    while(fgets(linha, 100, arquivo_entrada) != NULL){
-        Pessoa* nova_pes = malloc(sizeof(Pessoa));
-        if(nova_pes == NULL){
-            printf("Erro na alocação de memória!\n");
-            exit(1);
-        }
-        sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d", nova_pes->nome, &nova_pes->idade, &nova_pes->documento);
-        nova_pes->prox = primeira_celula;
-        primeira_celula = nova_pes;
-    }
-
-    fclose(arquivo_entrada);
     
     Pessoa* rascunho = primeira_celula;
     Pessoa* anterior = NULL;
@@ -138,30 +135,12 @@ void remove_pessoa(){
     fclose(novo_arquivo);
 }
 
-void edita_pessoa(){
-    char linha[100], nome_edita[50];
+void edita_pessoa(Pessoa* primeira_celula){
+    char nome_edita[50];
     int contador = 0, opcao;
+    int escolha = 0;
     printf("Insira o nome da pessoa que você deseja editar:\n");
     scanf(" %[^\n]", nome_edita);
-    Pessoa* primeira_celula = NULL;
-    FILE* arquivo_entrada = fopen("pessoas.txt", "r");
-    if(arquivo_entrada == NULL){
-        printf("Nenhuma Pessoa Cadastrada!\n\n");
-        return;
-    }
-
-    while(fgets(linha, 100, arquivo_entrada) != NULL){
-        Pessoa* nova_pes = malloc(sizeof(Pessoa));
-        if(nova_pes == NULL){
-            printf("Erro na alocação de memória!\n");
-            exit(1);
-        }
-        sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d", nova_pes->nome, &nova_pes->idade, &nova_pes->documento);
-        nova_pes->prox = primeira_celula;
-        primeira_celula = nova_pes;
-    }
-
-    fclose(arquivo_entrada);
     
     Pessoa* rascunho = primeira_celula;
     FILE* novo_arquivo = fopen("pessoas.txt", "w");
@@ -169,19 +148,24 @@ void edita_pessoa(){
         printf("Erro ao abrir o arquivo de entrada!\n\n");
         exit(1);
     }
-    do {
-        int escolha = 0;
-        if(strcmp(rascunho->nome, nome_edita) != 0) {
+    do 
+    {
+        escolha = 0;
+        if(strcmp(rascunho->nome, nome_edita) != 0) 
+        {
             fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
             rascunho = rascunho->prox;
         }
-        else {
-            while(escolha != 2){
+        else 
+        {
+            while(escolha != 2)
+            {
                 printf("Pessoa Atual.\nNome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
                 printf("Digite o que deseja editar:\n1-Nome\n2-Idade\n3-Documento\n");
                 scanf("%d", &opcao);
                 contador++;
-                switch(opcao) {
+                switch(opcao) 
+                {
                     case 1:
                     printf("Digite o novo nome da pessoa: ");
                     scanf(" %[^\n]s", rascunho->nome);

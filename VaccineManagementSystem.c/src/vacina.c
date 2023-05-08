@@ -11,15 +11,13 @@ typedef struct vacina{
     struct vacina* prox;
 }Vacina;
 
-Vacina* Banco_Dados() {
+Vacina* Banco_Dados_Vacina() {
     char linha[100];
 
     Vacina* primeira_celula = NULL;
     FILE* arquivo_entrada = fopen("vacinas.txt", "r");
-    if(arquivo_entrada == NULL){
-        printf("Nenhuma Vacina Cadastrada!\n\n");
+    if(arquivo_entrada == NULL)
         return(NULL);
-    }
 
     while(fgets(linha, 100, arquivo_entrada) != NULL){
         Vacina* nova_vac = malloc(sizeof(Vacina));
@@ -230,8 +228,9 @@ void Editar_Vacina(Vacina* primeira_celula)
         printf("Esta vacina não está cadastrada!\n\n");
     }
     contador = 0;
+
     fclose(novo_arquivo);
-    }
+}
 
 
 void Lista_Vacina(Vacina* lista){
@@ -266,8 +265,8 @@ void CombSort_Vacina(int n)
 
     teste = fopen("vacinas.txt", "rt");
     if(teste == NULL) {
-        printf("\nERRO!\n");
-        exit(1);
+        printf("\nNenhuma Vacina Cadastrada!\n");
+        return;
     }
 
     while(contador < n) {

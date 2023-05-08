@@ -1,5 +1,2 @@
-Nome: Carlinhos	Idade: 45	Documento: 323212
-Nome: Maria	Idade: 13	Documento: 123123
-Nome: Mike	Idade: 23	Documento: 9834
-Nome: Neitor	Idade: 29	Documento: 123123
-Nome: Xilipis	Idade: 24	Documento: 3232323
+Nome: Gabas	Idade: 20	Documento: 21
+Nome: Vlad	Idade: 19	Documento: 23

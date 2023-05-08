@@ -7,9 +7,10 @@
 
 
 int main(){
-    Vacina* lista = Banco_Dados();
     int Opcao;
     int qnt_linhas;
+    Vacina* lista_vacina = Banco_Dados_Vacina();
+    Pessoa* lista_pessoa = Banco_Dados_Pessoa();
 
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 13){
@@ -21,17 +22,20 @@ int main(){
             case 1:
             printf("\tAdicionar Vacina\t\n");
             adiciona_vacina();
-            lista = Banco_Dados();
+            qnt_linhas = contador_vacina();
+            CombSort_Vacina(qnt_linhas);
+            lista_vacina = Banco_Dados_Vacina();
             break;
             case 2:
             printf("\tRemover Vacina\t\n");
-            Remove_Vacina(lista);
-            lista = Banco_Dados();
+            Remove_Vacina(lista_vacina);
+            qnt_linhas = contador_vacina();
+            CombSort_Vacina(qnt_linhas);
+            lista_vacina = Banco_Dados_Vacina();
             break;
             case 3:
             printf("\tListar Vacinas\t\n");  
-            lista = Banco_Dados();
-            Lista_Vacina(lista);    
+            Lista_Vacina(lista_vacina);    
             break;
             case 4:
             printf("\tBuscar Vacinas\t\n");
@@ -42,30 +46,40 @@ int main(){
             break;
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");  
-            Editar_Vacina(lista); 
-            lista = Banco_Dados();
+            Editar_Vacina(lista_vacina);
+            qnt_linhas = contador_vacina();
+            CombSort_Vacina(qnt_linhas);
+            lista_vacina = Banco_Dados_Vacina();
             break;
             case 7:
             printf("\tConsultar Quantitativo de Pessoas que Aplicaram Determinada Vacina\t\n");
             break;
             case 8:
             printf("\tAdicionar Pessoa\t\n");
-            cria_pessoa();
             add_pessoa();
+            qnt_linhas = contador_pessoa();
+            CombSort_Pessoa(qnt_linhas);
+            lista_pessoa = Banco_Dados_Pessoa();
             //função de adicionar pessoa
             break;
             case 9:
             printf("\tListar Pessoas\t\n");
-            listar_pessoas();
+            listar_pessoas(lista_pessoa);
             //função de listar pessoas
             break;    
             case 10:
             printf("\tRemover Pessoas\t\n");
-            remove_pessoa();
+            remove_pessoa(lista_pessoa);
+            qnt_linhas = contador_pessoa();
+            CombSort_Pessoa(qnt_linhas);
+            lista_pessoa = Banco_Dados_Pessoa();
             break;
             case 11:
             printf("\tEditar Pessoa\t\n");
-            edita_pessoa();
+            edita_pessoa(lista_pessoa);
+            qnt_linhas = contador_pessoa();
+            CombSort_Pessoa(qnt_linhas);
+            lista_pessoa = Banco_Dados_Pessoa();
             break;
             case 12:
             printf("\tBuscar Pessoas\t\n");
@@ -75,11 +89,6 @@ int main(){
             break;
         }
     }
-
-    qnt_linhas = contador_vacina();
-    CombSort_Vacina(qnt_linhas);
-    qnt_linhas = contador_pessoa();
-    CombSort_Pessoa(qnt_linhas);
 
     return 0;
 }
