@@ -9,6 +9,7 @@
 int main(){
     Vacina* lista = Banco_Dados();
     int Opcao;
+    int qnt_linhas;
 
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 13){
@@ -74,7 +75,8 @@ int main(){
             break;
         }
     }
-    CombSort();
+    qnt_linhas = contador();
+    CombSort(qnt_linhas);
 
     return 0;
 }
