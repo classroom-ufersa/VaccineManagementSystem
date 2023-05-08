@@ -1,6 +1,6 @@
-Nome: Zeze	Lote: 32	Data de Fabricacao: 24/01	Data de Validade: 24/02
-Nome: Maria	Lote: 2323243	Data de Fabricacao: 24/06	Data de Validade: 24/08
-Nome: Marcos	Lote: 12312	Data de Fabricacao: 24/05;	Data de Validade: 24/06
-Nome: Joao	Lote: 232	Data de Fabricacao: 24-04-2022	Data de Validade: 24/04
-Nome: Heitor	Lote: 36	Data de Fabricacao: 23/04	Data de Validade: 23/05
 Nome: Gabas	Lote: 12121	Data de Fabricacao: 23/02	Data de Validade: 23/03
+Nome: Heitor	Lote: 36	Data de Fabricacao: 23/04	Data de Validade: 23/05
+Nome: Joao	Lote: 232	Data de Fabricacao: 24-04-2022	Data de Validade: 24/04
+Nome: Marcos	Lote: 12312	Data de Fabricacao: 24/05;	Data de Validade: 24/06
+Nome: Maria	Lote: 2323243	Data de Fabricacao: 24/06	Data de Validade: 24/08
+Nome: Zeze	Lote: 32	Data de Fabricacao: 24/01	Data de Validade: 24/02

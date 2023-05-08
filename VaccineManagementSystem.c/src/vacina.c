@@ -257,9 +257,10 @@ void CombSort(int n)
 {
     int trocado = 1;
     int i, j;
-    char temp[200], linha[200];
+    char temp[200];
     int controle = 0;
     char nomes[10][200];
+    int contador = 0;
 
     FILE* teste;
 
@@ -269,9 +270,9 @@ void CombSort(int n)
         exit(1);
     }
 
-    while(fgets(linha, 200, teste) != NULL) {
-        fgets(nomes[n], 200, teste);
-        n++;
+    while(contador < n) {
+        fgets(nomes[contador], 200, teste);
+        contador++;
     }
     int lacuna = n;
 

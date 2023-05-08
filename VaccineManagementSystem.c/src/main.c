@@ -75,6 +75,7 @@ int main(){
             break;
         }
     }
+    
     qnt_linhas = contador();
     CombSort(qnt_linhas);
 
