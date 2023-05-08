@@ -74,6 +74,7 @@ int main(){
             break;
         }
     }
+    CombSort();
 
     return 0;
 }

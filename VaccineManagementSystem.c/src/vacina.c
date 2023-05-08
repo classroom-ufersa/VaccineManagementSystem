@@ -249,3 +249,59 @@ void Lista_Vacina(Vacina* lista){
     printf("\n");
     fclose(entradas);
 }
+
+void CombSort()
+{
+    int trocado = 1;
+    int i, j;
+    char temp[100], linha[300];
+    int controle = 0;
+    char nomes[10][300];
+    int n = 0;
+
+    FILE* teste;
+
+    teste = fopen("vacinas.txt", "rt");
+    if(teste == NULL) {
+        printf("\nERRO!\n");
+        exit(1);
+    }
+
+    while(fgets(linha, 300, teste) != NULL) {
+        fgets(nomes[n], 300, teste);
+        n++;
+    }
+    int lacuna = n;
+
+    while (lacuna > 1 || trocado == 1)
+    { 
+        lacuna = lacuna / 1.3;
+        if (lacuna < 1)
+        {
+            lacuna = 1;
+        }
+
+        trocado = 0;
+        for (i = 0, j = i + lacuna; j < n; i++, j++)
+        { 
+            if (strcmp(nomes[i], nomes[j]) > 0)
+            {
+                strcpy(temp, nomes[i]);
+                strcpy(nomes[i], nomes[j]);
+                strcpy(nomes[j], temp);
+                trocado = 1;
+            }
+        }
+    }
+    fclose(teste);
+
+    teste = fopen("vacinas.txt", "wt");
+
+    while (controle < n)
+    {
+        fprintf(teste, "%s", nomes[controle]);
+        controle++;
+    }
+
+    fclose(teste);
+}
