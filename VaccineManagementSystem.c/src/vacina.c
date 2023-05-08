@@ -193,6 +193,7 @@ void Remove_Vacina(){
 
     if(contador == 0)
         printf("Esta vacina não está cadastrada!\n\n");
+        
     contador = 0;
 
     fclose(novo_arquivo);
@@ -274,6 +275,8 @@ void Editar_Vacina(){
     while(rascunho->prox != NULL);
     if(contador == 0)
         printf("Esta vacina não está cadastrada!\n\n");
+
+    contador = 0;
 
     fclose(novo_arquivo);
 }

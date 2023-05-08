@@ -133,6 +133,8 @@ void remove_pessoa(){
     if(contador == 0)
         printf("Esta pessoa não está cadastrada!\n\n");
 
+    contador = 0;
+
     fclose(novo_arquivo);
 }
 
@@ -207,6 +209,8 @@ void edita_pessoa(){
     while(rascunho->prox != NULL);
     if(contador == 0)
         printf("Esta pessoa não está cadastrada!\n\n");
+
+    contador = 0;
 
     fclose(novo_arquivo);
 }
