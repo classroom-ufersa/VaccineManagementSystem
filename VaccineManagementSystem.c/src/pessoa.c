@@ -139,10 +139,10 @@ void remove_pessoa(){
 }
 
 void edita_pessoa(){
-    char linha[100], nome_deleta[50];
+    char linha[100], nome_edita[50];
     int contador = 0, opcao;
     printf("Insira o nome da pessoa que você deseja editar:\n");
-    scanf(" %[^\n]", nome_deleta);
+    scanf(" %[^\n]", nome_edita);
     Pessoa* primeira_celula = NULL;
     FILE* arquivo_entrada = fopen("pessoas.txt", "r");
     if(arquivo_entrada == NULL){
@@ -171,7 +171,7 @@ void edita_pessoa(){
     }
     do {
         int escolha = 0;
-        if(strcmp(rascunho->nome, nome_deleta) != 0) {
+        if(strcmp(rascunho->nome, nome_edita) != 0) {
             fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
             rascunho = rascunho->prox;
         }
@@ -204,8 +204,14 @@ void edita_pessoa(){
             fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
             rascunho = rascunho->prox;
         }
-
-    } 
+    if (rascunho->prox == NULL)
+        {
+            if ((strcmp(rascunho->nome, nome_edita) != 0))
+            {
+                fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+            }
+        } 
+    }
     while(rascunho->prox != NULL);
     if(contador == 0)
         printf("Esta pessoa não está cadastrada!\n\n");
