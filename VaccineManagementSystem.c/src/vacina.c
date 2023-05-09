@@ -187,7 +187,7 @@ void Editar_Vacina(Vacina* primeira_celula)
                 printf("Vacina Atual.\nNome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
                 printf("Digite o que deseja editar:\n1-Nome\n2-Lote\n3-Data de Fabricação\n4-Data de Validade\n");
                 scanf("%d", &opcao);
-                contador++;
+                contador++; 
                 switch (opcao)
                 {
                 case 1:
@@ -222,8 +222,46 @@ void Editar_Vacina(Vacina* primeira_celula)
             {
                 fprintf(novo_arquivo, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
             }
+            else {
+                while (escolha != 2) {
+                    printf("Vacina Atual.\nNome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+                    printf("Digite o que deseja editar:\n1-Nome\n2-Lote\n3-Data de Fabricação\n4-Data de Validade\n");
+                    scanf("%d", &opcao);
+                    contador++; 
+                    switch (opcao)
+                    {
+                        case 1:
+                        printf("Digite o novo nome da vacina: ");
+                        scanf(" %[^\n]s", rascunho->nome);
+                        rascunho->nome[0] = toupper(rascunho->nome[0]);
+                        break;
+                        case 2:
+                        printf("Digite o novo lote da vacina: ");
+                        scanf(" %[^\n]s", rascunho->lote);
+                        break;
+                        case 3:
+                        printf("Digite a nova data de fabricação da vacina: ");
+                        scanf(" %[^\n]s", rascunho->fab);
+                        break;
+                        case 4:
+                        printf("Digite a nova data de validade da vacina: ");
+                        scanf(" %[^\n]s", rascunho->val);
+                        break;
+                    }
+                    printf("Deseja fazer mais alguma alteração?\n");
+                    printf("1-Sim\n2-Não: ");
+                    scanf("%d", &escolha);
+                }
+
+                fprintf(novo_arquivo, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome, rascunho->lote, rascunho->fab, rascunho->val);
+                rascunho = rascunho->prox;
+                contador = 0;
+                fclose(novo_arquivo);
+                return;
+            }
         }
-    }while (rascunho->prox != NULL);
+    }
+    while (rascunho->prox != NULL);
     if (contador == 0){
         printf("Esta vacina não está cadastrada!\n\n");
     }
