@@ -39,12 +39,11 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
 
     do {
         if((strcmp(rascunho_pes->nome, nome_add) == 0) && (rascunho_pes->documento == documento)) {
-            printf("Digite a vacina que deseja cadastrar: ");
+            printf("Digite a vacina que deseja aplicar: ");
             scanf(" %[^\n]s", vacina_add);
 
             do {
                 if(strcmp(rascunho_vac->nome, vacina_add) == 0) {
-                    strcpy(rascunho_pes->nome, nome_add);
                     fprintf(entrada, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho_pes->nome, rascunho_pes->idade, rascunho_pes->documento);
                     controle_vac++;
 
