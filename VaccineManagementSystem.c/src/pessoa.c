@@ -2,14 +2,153 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "vacina.c"
+
+typedef struct cartao{
+    char vacina[50];
+    int dose;
+    char data[20];
+    struct cartao* prox;
+}Cartao;
 
 typedef struct pessoa{
     char nome[100];
     int idade;
     int documento;
     struct pessoa* prox;
-    //Cartao de vacina
+    Cartao* cartao;
 }Pessoa;
+
+void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
+    char nome_add[50];
+    char vacina_add[20];
+    int documento;
+    int controle = 0, controle_pes = 0, controle_vac = 0;
+    Pessoa* rascunho_pes = pessoa;
+    Vacina* rascunho_vac = vacina;
+    FILE* entrada = fopen("aki.txt", "a");
+    if(entrada == NULL) {
+        printf("!ERRO!\n");
+        exit(1);
+    }
+
+    printf("Digite o nome da pessoa: ");
+    scanf(" %[^\n]s", nome_add);
+    printf("Digite o documento: ");
+    scanf("%d", &documento);
+
+    do {
+        if((strcmp(rascunho_pes->nome, nome_add) == 0) && (rascunho_pes->documento == documento)) {
+            printf("Digite a vacina que deseja cadastrar: ");
+            scanf(" %[^\n]s", vacina_add);
+
+            do {
+                if(strcmp(rascunho_vac->nome, vacina_add) == 0) {
+                    strcpy(rascunho_pes->nome, nome_add);
+                    fprintf(entrada, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho_pes->nome, rascunho_pes->idade, rascunho_pes->documento);
+                    controle_vac++;
+
+                    do {
+                        if(rascunho_pes->cartao->vacina != NULL) {
+
+                            fprintf(entrada, "Vacina: %s\tDose: %d\tData de Aplicação: %s\n", rascunho_pes->cartao->vacina, rascunho_pes->cartao->dose, rascunho_pes->cartao->data);
+
+                            rascunho_pes->cartao = rascunho_pes->cartao->prox;
+                        }
+                        else {
+                            printf("Digite a sua dose: ");
+                            scanf("%d", &rascunho_pes->cartao->dose);
+                            printf("Digite a data de aplicação: ");
+                            scanf(" %[^\n]s", rascunho_pes->cartao->data);
+                            strcpy(rascunho_pes->cartao->vacina, vacina_add);
+                            fprintf(entrada, "Vacina: %s\tDose: %d\tData de Aplicação: %s\n", rascunho_pes->cartao->vacina, rascunho_pes->cartao->dose, rascunho_pes->cartao->data);
+                            fprintf(entrada, "----------------------------------------\n");
+                            controle++;
+                        }
+                    }
+                    while(controle != 0);
+                }
+                else {
+                    rascunho_vac = rascunho_vac->prox;
+                }
+            }
+            while(rascunho_vac != NULL);
+
+            if(controle_vac != 0) {
+                printf("Vacina Não Cadastrada!\n");
+                fclose(entrada);
+                return;
+            }
+        }
+        else {
+            rascunho_pes = rascunho_pes->prox;
+        }
+    }
+    while(rascunho_pes != NULL);
+
+    if(controle_pes != 0) {
+        printf("Pessoa Não Cadastrada!\n");
+        fclose(entrada);
+        return;
+    }
+
+    fclose(entrada);
+}
+
+/*void remove_pessoa(Pessoa* primeira_celula){
+    char nome_deleta[50];
+    int documento_deleta;
+    int contador = 0;
+    printf("Insira o nome da pessoa que você deseja remover:\n");
+    scanf(" %[^\n]", nome_deleta);
+    printf("Insira o documento da pessoa que você deseja remover:\n");
+    scanf("%d", &documento_deleta);
+    
+    Pessoa* rascunho = primeira_celula;
+    Pessoa* anterior = NULL;
+    FILE* novo_arquivo = fopen("pessoas.txt", "w");
+    if(novo_arquivo == NULL){
+        printf("Erro ao abrir o arquivo de entrada!\n");
+        exit(1);
+    }
+    do{
+        if((strcmp(rascunho->nome, nome_deleta) != 0) && (rascunho->documento != documento_deleta)){
+            fprintf(novo_arquivo,"Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+            anterior = rascunho;
+            rascunho = rascunho->prox;
+        }
+        else if(rascunho->prox == NULL && (strcmp(rascunho->nome, nome_deleta) == 0) && (rascunho->documento == documento_deleta)) {
+            anterior->prox = NULL;
+            free(rascunho);
+            contador++;
+        }
+        else if((strcmp(rascunho->nome, nome_deleta) == 0) && (rascunho->documento == documento_deleta)) {
+            if(anterior == NULL){
+                rascunho = rascunho->prox; 
+                contador++;
+            }
+            else{
+                anterior->prox = rascunho->prox;
+                free(rascunho);
+                rascunho = anterior->prox;
+                contador++;
+            }
+        }
+        if(rascunho->prox == NULL){
+            if((strcmp(rascunho->nome, nome_deleta) != 0) && (rascunho->documento != documento_deleta)) {
+                fprintf(novo_arquivo,"Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+            }
+        }
+
+    } 
+    while(rascunho->prox != NULL);
+    if(contador == 0)
+        printf("Esta pessoa não está cadastrada!\n\n");
+
+    contador = 0;
+
+    fclose(novo_arquivo);
+}*/
 
 Pessoa* Banco_Dados_Pessoa() {
     char linha[100];

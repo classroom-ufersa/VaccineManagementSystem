@@ -43,6 +43,7 @@ int main(){
             break;
             case 5:
             printf("\tAplicação de Vacina em uma Pessoa\t\n");
+            aplica_vacina(lista_pessoa, lista_vacina);
             break;
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");  
