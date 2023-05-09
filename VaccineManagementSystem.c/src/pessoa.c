@@ -18,7 +18,7 @@ typedef struct pessoa{
     Cartao* cartao;
 }Pessoa;
 
-void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
+/*void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
     char nome_add[50];
     char vacina_add[20];
     int documento;
@@ -91,7 +91,7 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
     }
 
     fclose(entrada);
-}
+}*/
 
 Pessoa* Banco_Dados_Pessoa() {
     char linha[100];

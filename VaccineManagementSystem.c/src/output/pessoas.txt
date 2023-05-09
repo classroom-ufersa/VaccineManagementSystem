@@ -1,5 +1,1 @@
-Nome: Carlinhos	Idade: 23	Documento: 29212
-Nome: Gabas	Idade: 20	Documento: 9302
-Nome: Joao	Idade: 20	Documento: 4345
-Nome: Maria	Idade: 67	Documento: 9405
-Nome: Vlad	Idade: 19	Documento: 23
+Nome: Joao	Idade: 19	Documento: 234

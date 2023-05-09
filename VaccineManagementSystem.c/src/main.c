@@ -4,7 +4,80 @@
 #include "pessoa.c"
 #include "vacina.c"
 
+void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
+    char nome_add[50];
+    char vacina_add[20];
+    int documento;
+    int controle = 0, controle_pes = 0, controle_vac = 0;
+    Pessoa* rascunho_pes = pessoa;
+    Vacina* rascunho_vac = vacina;
+    FILE* entrada = fopen("aki.txt", "a");
+    if(entrada == NULL) {
+        printf("!ERRO!\n");
+        exit(1);
+    }
 
+    printf("Digite o nome da pessoa: ");
+    scanf(" %[^\n]s", nome_add);
+    printf("Digite o documento: ");
+    scanf("%d", &documento);
+
+    do {
+        if((strcmp(rascunho_pes->nome, nome_add) == 0) && (rascunho_pes->documento == documento)) {
+            printf("Digite a vacina que deseja aplicar: ");
+            scanf(" %[^\n]s", vacina_add);
+
+            do {
+                if(strcmp(rascunho_vac->nome, vacina_add) == 0) {
+                    fprintf(entrada, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho_pes->nome, rascunho_pes->idade, rascunho_pes->documento);
+                    controle_vac++;
+
+                    do {
+                        if(rascunho_pes->cartao->vacina != NULL) {
+
+                            fprintf(entrada, "Vacina: %s\tDose: %d\tData de Aplicação: %s\n", rascunho_pes->cartao->vacina, rascunho_pes->cartao->dose, rascunho_pes->cartao->data);
+
+                            rascunho_pes->cartao = rascunho_pes->cartao->prox;
+                        }
+                        else {
+                            printf("Digite a sua dose: ");
+                            scanf("%d", &rascunho_pes->cartao->dose);
+                            printf("Digite a data de aplicação: ");
+                            scanf(" %[^\n]s", rascunho_pes->cartao->data);
+                            strcpy(rascunho_pes->cartao->vacina, vacina_add);
+                            fprintf(entrada, "Vacina: %s\tDose: %d\tData de Aplicação: %s\n", rascunho_pes->cartao->vacina, rascunho_pes->cartao->dose, rascunho_pes->cartao->data);
+                            fprintf(entrada, "----------------------------------------\n");
+                            controle++;
+                        }
+                    }
+                    while(controle != 0);
+                }
+                else {
+                    rascunho_vac = rascunho_vac->prox;
+                }
+            }
+            while(rascunho_vac != NULL);
+
+            if(controle_vac != 0) {
+                printf("Vacina Não Cadastrada!\n");
+                fclose(entrada);
+                return;
+            }
+        }
+        else {
+            rascunho_pes = rascunho_pes->prox;
+        }
+    }
+    while(rascunho_pes != NULL);
+
+    if(controle_pes != 0) {
+        printf("Pessoa Não Cadastrada!\n");
+        fclose(entrada);
+        return;
+    }
+
+    fclose(entrada);
+}
 
 int main(){
     int Opcao;
@@ -43,7 +116,7 @@ int main(){
             break;
             case 5:
             printf("\tAplicação de Vacina em uma Pessoa\t\n");
-            //aplica_vacina(lista_pessoa, lista_vacina);
+            aplica_vacina(lista_pessoa, lista_vacina);
             break;
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");  
