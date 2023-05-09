@@ -8,6 +8,8 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
     char nome_add[50];
     char vacina_add[20];
     int documento;
+    int dt;
+    char dat[50];
     int controle = 0, controle_pes = 0, controle_vac = 0;
     Pessoa* rascunho_pes = pessoa;
     Vacina* rascunho_vac = vacina;
@@ -41,16 +43,18 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
                         }
                         else {
                             printf("Digite a sua dose: ");
-                            scanf("%d", &rascunho_pes->cartao->dose);
+                            scanf("%d", &dt);
                             printf("Digite a data de aplicação: ");
-                            scanf(" %[^\n]s", rascunho_pes->cartao->data);
-                            strcpy(rascunho_pes->cartao->vacina, vacina_add);
-                            fprintf(entrada, "Vacina: %s\tDose: %d\tData de Aplicação: %s\n", rascunho_pes->cartao->vacina, rascunho_pes->cartao->dose, rascunho_pes->cartao->data);
+                            scanf(" %[^\n]s", dat);
+                            //strcpy(rascunho_pes->cartao->vacina, vacina_add);
+                            fprintf(entrada, "Vacina: %s\tDose: %d\tData de Aplicação: %s\n", vacina_add, dt, dat);
+                            printf("\naaaa\n");
                             fprintf(entrada, "----------------------------------------\n");
+                            printf("\nbbbbbb\n");
                             controle++;
                         }
                     }
-                    while(controle != 0);
+                    while(controle == 0);
                 }
                 else {
                     rascunho_vac = rascunho_vac->prox;
@@ -58,7 +62,7 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
             }
             while(rascunho_vac != NULL);
 
-            if(controle_vac != 0) {
+            if(controle_vac == 0) {
                 printf("Vacina Não Cadastrada!\n");
                 fclose(entrada);
                 return;
@@ -70,7 +74,7 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
     }
     while(rascunho_pes != NULL);
 
-    if(controle_pes != 0) {
+    if(controle_pes == 0) {
         printf("Pessoa Não Cadastrada!\n");
         fclose(entrada);
         return;
