@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "vacina.c"
 
 typedef struct cartao{
     char vacina[50];
@@ -93,61 +92,6 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
 
     fclose(entrada);
 }
-
-/*void remove_pessoa(Pessoa* primeira_celula){
-    char nome_deleta[50];
-    int documento_deleta;
-    int contador = 0;
-    printf("Insira o nome da pessoa que você deseja remover:\n");
-    scanf(" %[^\n]", nome_deleta);
-    printf("Insira o documento da pessoa que você deseja remover:\n");
-    scanf("%d", &documento_deleta);
-    
-    Pessoa* rascunho = primeira_celula;
-    Pessoa* anterior = NULL;
-    FILE* novo_arquivo = fopen("pessoas.txt", "w");
-    if(novo_arquivo == NULL){
-        printf("Erro ao abrir o arquivo de entrada!\n");
-        exit(1);
-    }
-    do{
-        if((strcmp(rascunho->nome, nome_deleta) != 0) && (rascunho->documento != documento_deleta)){
-            fprintf(novo_arquivo,"Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
-            anterior = rascunho;
-            rascunho = rascunho->prox;
-        }
-        else if(rascunho->prox == NULL && (strcmp(rascunho->nome, nome_deleta) == 0) && (rascunho->documento == documento_deleta)) {
-            anterior->prox = NULL;
-            free(rascunho);
-            contador++;
-        }
-        else if((strcmp(rascunho->nome, nome_deleta) == 0) && (rascunho->documento == documento_deleta)) {
-            if(anterior == NULL){
-                rascunho = rascunho->prox; 
-                contador++;
-            }
-            else{
-                anterior->prox = rascunho->prox;
-                free(rascunho);
-                rascunho = anterior->prox;
-                contador++;
-            }
-        }
-        if(rascunho->prox == NULL){
-            if((strcmp(rascunho->nome, nome_deleta) != 0) && (rascunho->documento != documento_deleta)) {
-                fprintf(novo_arquivo,"Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
-            }
-        }
-
-    } 
-    while(rascunho->prox != NULL);
-    if(contador == 0)
-        printf("Esta pessoa não está cadastrada!\n\n");
-
-    contador = 0;
-
-    fclose(novo_arquivo);
-}*/
 
 Pessoa* Banco_Dados_Pessoa() {
     char linha[100];
