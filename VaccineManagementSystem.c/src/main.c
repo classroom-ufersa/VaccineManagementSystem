@@ -6,8 +6,10 @@
 int main(){
     int Opcao;
     int qnt_linhas;
-    Vacina* lista_vacina = Banco_Dados_Vacina();
-    Pessoa* lista_pessoa = Banco_Dados_Pessoa();
+    Vacina* lista_vacina = (Vacina*) malloc(sizeof(Vacina));
+    lista_vacina = Banco_Dados_Vacina();
+    Pessoa* lista_pessoa = (Pessoa*) malloc(sizeof(Pessoa));
+    lista_pessoa = Banco_Dados_Pessoa();
 
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 13){
