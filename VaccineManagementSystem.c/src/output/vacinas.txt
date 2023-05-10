@@ -1,2 +1,4 @@
-Nome: CoronaVac	Lote: 12	Data de Fabricacao: 24/05	Data de Validade: 24/06
+Nome: CoronaVac	Lote: 20	Data de Fabricacao: 12	Data de Validade: 13
+Nome: Jansey	Lote: 43	Data de Fabricacao: 23	Data de Validade: 34
 Nome: Pfizer	Lote: 09	Data de Fabricacao: 24/03	Data de Validade: 24/04
+Nome: Sputinik	Lote: 54	Data de Fabricacao: 21	Data de Validade: 22

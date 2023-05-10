@@ -154,10 +154,12 @@ void listar_pessoas(Pessoa* pessoa) {
     }
 
     do {
-        printf("Nome: %s\tIdade: %d\tDocumento: %d\n", pessoa->nome, pessoa->idade, pessoa->documento);
-        pessoa = pessoa->prox;
         if(pessoa->prox == NULL) {
             printf("Nome: %s\tIdade: %d\tDocumento: %d\n", pessoa->nome, pessoa->idade, pessoa->documento);
+        }
+        if(pessoa->prox != NULL) {
+            printf("Nome: %s\tIdade: %d\tDocumento: %d\n", pessoa->nome, pessoa->idade, pessoa->documento);
+            pessoa = pessoa->prox;
         }
     }
     while(pessoa->prox != NULL);
