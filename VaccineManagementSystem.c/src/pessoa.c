@@ -68,7 +68,7 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
                             controle++;
                         }
                     }
-                    while(controle != 0);
+                    while(controle == 0);
                 }
                 else {
                     rascunho_vac = rascunho_vac->prox;
@@ -76,7 +76,7 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
             }
             while(rascunho_vac != NULL);
 
-            if(controle_vac != 0) {
+            if(controle_vac == 0) {
                 printf("Vacina Não Cadastrada!\n");
                 fclose(entrada);
                 return;
@@ -88,7 +88,7 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
     }
     while(rascunho_pes != NULL);
 
-    if(controle_pes != 0) {
+    if(controle_pes == 0) {
         printf("Pessoa Não Cadastrada!\n");
         fclose(entrada);
         return;
@@ -112,10 +112,8 @@ Pessoa* Banco_Dados_Pessoa() {
             exit(1);
         }
         sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d\n", nova_pes->nome, &nova_pes->idade, &nova_pes->documento);
-        printf("%s\n", nova_pes->nome);
         nova_pes->prox = primeira_celula;
         primeira_celula = nova_pes;
-        printf("%s\n", primeira_celula->nome);
     }
 
     fclose(arquivo_entrada);

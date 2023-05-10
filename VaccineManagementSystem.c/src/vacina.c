@@ -279,10 +279,12 @@ void Lista_Vacina(Vacina* lista){
         return;
     }
     do {
-        printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", lista->nome, lista->lote, lista->fab, lista->val);
-        lista = lista->prox;
-        if(lista->prox == NULL){
+        if(lista->prox == NULL) {
             printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", lista->nome, lista->lote, lista->fab, lista->val);
+        }
+        else {
+            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", lista->nome, lista->lote, lista->fab, lista->val);
+            lista = lista->prox;
         }
     }
     while(lista->prox != NULL);
