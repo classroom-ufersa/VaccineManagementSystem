@@ -1,3 +1,5 @@
+#include "vacina.h"
+
 typedef struct cartao Cartao;
 typedef struct pessoa Pessoa;
 void aplica_vacina(Pessoa* pessoa, Vacina* vacina);

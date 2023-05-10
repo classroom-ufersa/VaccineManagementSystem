@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pessoa.h"
-#include "vacina.h"
+#include "include/pessoa.h"
+#include "include/vacina.h"
 
 /*void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
     char nome_add[50];
