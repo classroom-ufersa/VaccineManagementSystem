@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "vacina.c"
+#include "/home/vladimyr/Documentos/Visual_Studio_Code/GitHub/Vacina/VaccineManagementSystem-1/VaccineManagementSystem.c/include/pessoa.h"
+#include "/home/vladimyr/Documentos/Visual_Studio_Code/GitHub/Vacina/VaccineManagementSystem-1/VaccineManagementSystem.c/src/vacina.c"
 
 typedef struct cartao{
     char vacina[50];
@@ -24,8 +25,10 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
     char vacina_add[20];
     int documento;
     int controle = 0, controle_pes = 0, controle_vac = 0;
-    Pessoa* rascunho_pes = pessoa;
-    Vacina* rascunho_vac = vacina;
+    Pessoa* rascunho_pes = (Pessoa*) malloc(sizeof(Pessoa));
+    rascunho_pes = pessoa;
+    Vacina* rascunho_vac = (Vacina*) malloc(sizeof(Vacina));
+    rascunho_vac = vacina;
     FILE* entrada = fopen("aki.txt", "a");
     if(entrada == NULL) {
         printf("!ERRO!\n");
@@ -109,8 +112,10 @@ Pessoa* Banco_Dados_Pessoa() {
             exit(1);
         }
         sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d\n", nova_pes->nome, &nova_pes->idade, &nova_pes->documento);
+        printf("%s\n", nova_pes->nome);
         nova_pes->prox = primeira_celula;
         primeira_celula = nova_pes;
+        printf("%s\n", primeira_celula->nome);
     }
 
     fclose(arquivo_entrada);

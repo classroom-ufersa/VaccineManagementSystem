@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "/home/vladimyr/Documentos/Visual_Studio_Code/GitHub/Vacina/VaccineManagementSystem-1/VaccineManagementSystem.c/include/vacina.h"
 
 typedef struct vacina{
     char nome[50];
@@ -20,7 +21,7 @@ Vacina* Banco_Dados_Vacina() {
         return(NULL);
 
     while(fgets(linha, 100, arquivo_entrada) != NULL){
-        Vacina* nova_vac = malloc(sizeof(Vacina));
+        Vacina* nova_vac = (Vacina*)malloc(sizeof(Vacina));
         if(nova_vac == NULL){
             printf("Erro na alocação de memória!\n");
             exit(1);
@@ -42,7 +43,7 @@ Vacina* adiciona_vacina(){
         printf("\nERRO!\n");
         exit(1);
     }
-    Vacina *nova_vacina = malloc(sizeof(Vacina));
+    Vacina *nova_vacina = (Vacina*)malloc(sizeof(Vacina));
     if(nova_vacina == NULL){
         printf("Erro ao alocar memória.\n");
         exit(1);
