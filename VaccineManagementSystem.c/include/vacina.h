@@ -1,13 +1,17 @@
 typedef struct vacina Vacina;
 
-typedef struct lista_vac Lista_Vac;
+Vacina* Banco_Dados_Vacina();
 
-Vacina* inicializa_vacina();
+Vacina* adiciona_vacina();
 
-Lista_Vac* inicializa_lista();
+void buscar_vacina();
 
-Lista_Vac* Insere_Vacina(Lista_Vac* lista);
+void Remove_Vacina(Vacina* primeira_celula);
 
-void insere_vacina_txt(Lista_Vac* primeiro_no);
+void Editar_Vacina(Vacina* primeira_celula);
 
-void Lista_Vacina();
+void Lista_Vacina(Vacina* lista);
+
+void CombSort_Vacina(int n);
+
+int contador_vacina();

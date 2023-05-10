@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pessoa.c"
-#include "vacina.c"
+#include "pessoa.h"
+#include "vacina.h"
 
-void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
+/*void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
     char nome_add[50];
     char vacina_add[20];
     int documento;
@@ -81,7 +81,7 @@ void aplica_vacina(Pessoa* pessoa, Vacina* vacina) {
     }
 
     fclose(entrada);
-}
+}*/
 
 int main(){
     int Opcao;
