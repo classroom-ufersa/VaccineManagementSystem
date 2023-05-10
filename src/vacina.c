@@ -3,13 +3,15 @@
 #include <string.h>
 #include <ctype.h>
 
-typedef struct vacina{
+struct vacina{
     char nome[50];
     char lote[50];
     char val[50];
     char fab[50];
     struct vacina* prox;
-}Vacina;
+};
+
+typedef struct vacina Vacina;
 
 Vacina* Banco_Dados_Vacina() {
     char linha[100];

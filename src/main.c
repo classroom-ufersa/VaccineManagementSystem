@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pessoa.c"
-
+#include "vacina.c"
 
 int main(){
     int Opcao;
-    int qnt_linhas;
+    //int qnt_linhas;
     Vacina* lista_vacina = Banco_Dados_Vacina();
     Pessoa* lista_pessoa = Banco_Dados_Pessoa();
 
@@ -20,15 +20,15 @@ int main(){
             case 1:
             printf("\tAdicionar Vacina\t\n");
             adiciona_vacina();
-            qnt_linhas = contador_vacina();
-            CombSort_Vacina(qnt_linhas);
+            //qnt_linhas = contador_vacina();
+            //CombSort_Vacina(qnt_linhas);
             lista_vacina = Banco_Dados_Vacina();
             break;
             case 2:
             printf("\tRemover Vacina\t\n");
             Remove_Vacina(lista_vacina);
-            qnt_linhas = contador_vacina();
-            CombSort_Vacina(qnt_linhas);
+            //qnt_linhas = contador_vacina();
+            //CombSort_Vacina(qnt_linhas);
             lista_vacina = Banco_Dados_Vacina();
             break;
             case 3:
@@ -47,8 +47,8 @@ int main(){
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");  
             Editar_Vacina(lista_vacina);
-            qnt_linhas = contador_vacina();
-            CombSort_Vacina(qnt_linhas);
+            //qnt_linhas = contador_vacina();
+            //CombSort_Vacina(qnt_linhas);
             lista_vacina = Banco_Dados_Vacina();
             break;
             case 7:
@@ -57,8 +57,8 @@ int main(){
             case 8:
             printf("\tAdicionar Pessoa\t\n");
             add_pessoa();
-            qnt_linhas = contador_pessoa();
-            CombSort_Pessoa(qnt_linhas);
+            //qnt_linhas = contador_pessoa();
+            //CombSort_Pessoa(qnt_linhas);
             lista_pessoa = Banco_Dados_Pessoa();
             //função de adicionar pessoa
             break;
@@ -70,15 +70,15 @@ int main(){
             case 10:
             printf("\tRemover Pessoas\t\n");
             remove_pessoa(lista_pessoa);
-            qnt_linhas = contador_pessoa();
-            CombSort_Pessoa(qnt_linhas);
+            //qnt_linhas = contador_pessoa();
+            //CombSort_Pessoa(qnt_linhas);
             lista_pessoa = Banco_Dados_Pessoa();
             break;
             case 11:
             printf("\tEditar Pessoa\t\n");
             edita_pessoa(lista_pessoa);
-            qnt_linhas = contador_pessoa();
-            CombSort_Pessoa(qnt_linhas);
+            //qnt_linhas = contador_pessoa();
+            //CombSort_Pessoa(qnt_linhas);
             lista_pessoa = Banco_Dados_Pessoa();
             break;
             case 12:

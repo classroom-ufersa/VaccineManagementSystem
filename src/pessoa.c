@@ -14,7 +14,7 @@ typedef struct pessoa{
     char nome[100];
     int idade;
     int documento;
-    Cartao cartao;
+    struct cartao cartao;
     struct pessoa* prox;
 }Pessoa;
 
