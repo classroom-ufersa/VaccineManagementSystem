@@ -6,7 +6,7 @@
 
 int main(){
     int Opcao;
-    //int qnt_linhas;
+    int qnt_linhas;
     Vacina* lista_vacina = Banco_Dados_Vacina();
     Pessoa* lista_pessoa = Banco_Dados_Pessoa();
 
@@ -20,15 +20,15 @@ int main(){
             case 1:
             printf("\tAdicionar Vacina\t\n");
             adiciona_vacina();
-            //qnt_linhas = contador_vacina();
-            //CombSort_Vacina(qnt_linhas);
+            qnt_linhas = contador_vacina();
+            CombSort_Vacina(qnt_linhas);
             lista_vacina = Banco_Dados_Vacina();
             break;
             case 2:
             printf("\tRemover Vacina\t\n");
             Remove_Vacina(lista_vacina);
-            //qnt_linhas = contador_vacina();
-            //CombSort_Vacina(qnt_linhas);
+            qnt_linhas = contador_vacina();
+            CombSort_Vacina(qnt_linhas);
             lista_vacina = Banco_Dados_Vacina();
             break;
             case 3:
@@ -42,49 +42,23 @@ int main(){
             break;
             case 5:
             printf("\tAplicação de Vacina em uma Pessoa\t\n");
-            aplica_vacina(lista_pessoa, lista_vacina);
+            Aplicar_Vacina();
             break;
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");  
             Editar_Vacina(lista_vacina);
-            //qnt_linhas = contador_vacina();
-            //CombSort_Vacina(qnt_linhas);
+            qnt_linhas = contador_vacina();
+            CombSort_Vacina(qnt_linhas);
             lista_vacina = Banco_Dados_Vacina();
             break;
             case 7:
             printf("\tConsultar Quantitativo de Pessoas que Aplicaram Determinada Vacina\t\n");
             break;
-            case 8:
-            printf("\tAdicionar Pessoa\t\n");
-            add_pessoa();
-            //qnt_linhas = contador_pessoa();
-            //CombSort_Pessoa(qnt_linhas);
-            lista_pessoa = Banco_Dados_Pessoa();
-            //função de adicionar pessoa
-            break;
             case 9:
             printf("\tListar Pessoas\t\n");
             listar_pessoas(lista_pessoa);
             //função de listar pessoas
-            break;    
-            case 10:
-            printf("\tRemover Pessoas\t\n");
-            remove_pessoa(lista_pessoa);
-            //qnt_linhas = contador_pessoa();
-            //CombSort_Pessoa(qnt_linhas);
-            lista_pessoa = Banco_Dados_Pessoa();
-            break;
-            case 11:
-            printf("\tEditar Pessoa\t\n");
-            edita_pessoa(lista_pessoa);
-            //qnt_linhas = contador_pessoa();
-            //CombSort_Pessoa(qnt_linhas);
-            lista_pessoa = Banco_Dados_Pessoa();
-            break;
-            case 12:
-            printf("\tBuscar Pessoas\t\n");
-            buscar_pessoa();
-            break;
+            break; 
             case 13:
             break;
         }

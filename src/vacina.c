@@ -80,7 +80,7 @@ void buscar_vacina() {
     char lote[50];
     char data_fab[50];
     char data_val[50];
-    char linha[100];
+    char linha[200];
 
     entrada = fopen("vacinas.txt", "r");
     if(entrada == NULL) {
@@ -88,7 +88,7 @@ void buscar_vacina() {
         return;
     }
 
-    while(fgets(linha, 100, entrada) != NULL) {
+    while(fgets(linha, 200, entrada) != NULL) {
         sscanf(linha, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s", nome, lote, data_fab, data_val);
 
         if((strcmp(nome, busca_vac) == 0) && (strcmp(lote, busca_lote) == 0)) {

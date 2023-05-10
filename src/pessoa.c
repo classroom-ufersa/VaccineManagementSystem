@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "vacina.c"
+//#include "vacina.c"
 
 typedef struct cartao{
     char vacina[50];
