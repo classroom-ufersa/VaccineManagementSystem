@@ -10,9 +10,9 @@ int main(){
     Vacina* lista_vacina = Banco_Dados_Vacina();
 
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
-    while(Opcao != 13){
+    while(Opcao != 8){
         printf("Digite a opção desejada:\n");
-        printf("1-Adicionar Vacina\n2-Remover Vacina\n3-Listar Vacinas\n4-Buscar Vacinas\n5-Aplicação de Vacina em Uma Pessoa\n6-Editar Vacina Cadastrada\n7-Consultar Quantidade de Pessoas que Aplicaram Determinada Vacina\n10-Sair do Programa\n");
+        printf("1-Adicionar Vacina\n2-Remover Vacina\n3-Listar Vacinas\n4-Buscar Vacinas\n5-Aplicação de Vacina em Uma Pessoa\n6-Editar Vacina Cadastrada\n7-Consultar Quantidade de Pessoas que Aplicaram Determinada Vacina\n8-Sair do Programa\n");
         scanf("%i", &Opcao);
         system("clear");
 
@@ -59,7 +59,7 @@ int main(){
             printf("\tConsultar Quantitativo de Pessoas que Aplicaram Determinada Vacina\t\n");
             qnt_vac();
             break; 
-            case 10:
+            case 8:
             exit(1);
         }
     }
