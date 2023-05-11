@@ -1,5 +1,3 @@
-typedef struct cartao Cartao;
-
 typedef struct pessoa Pessoa;
 
 void Aplicar_Vacina();
@@ -11,3 +9,5 @@ void listar_pessoas(Pessoa* pessoa);
 void CombSort_Pessoa(int n);
 
 int contador_pessoa();
+
+void qnt_vac();

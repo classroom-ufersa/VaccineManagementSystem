@@ -13,7 +13,7 @@ int main(){
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 13){
         printf("Digite a opção desejada:\n");
-        printf("1-Adicionar Vacina\n2-Remover Vacina\n3-Listar Vacinas\n4-Buscar Vacinas\n5-Aplicação de Vacina em Uma Pessoa\n6-Editar Vacina Cadastrada\n7-Consultar Quantidade de Pessoas que Aplicaram Determinada Vacina\n8-Adicionar Pessoa\n9-Listar Pessoas\n10-Remover Pessoa\n11-Editar Pessoa\n12-Buscar Pessoa\n13-Sair do Pograma\n");
+        printf("1-Adicionar Vacina\n2-Remover Vacina\n3-Listar Vacinas\n4-Buscar Vacinas\n5-Aplicação de Vacina em Uma Pessoa\n6-Editar Vacina Cadastrada\n7-Consultar Quantidade de Pessoas que Aplicaram Determinada Vacina\n10-Sair do Programa\n");
         scanf("%i", &Opcao);
         system("clear");
         switch(Opcao){
@@ -53,13 +53,14 @@ int main(){
             break;
             case 7:
             printf("\tConsultar Quantitativo de Pessoas que Aplicaram Determinada Vacina\t\n");
+            void qnt_vac();
             break;
             case 9:
             printf("\tListar Pessoas\t\n");
             listar_pessoas(lista_pessoa);
             //função de listar pessoas
             break; 
-            case 13:
+            case 10:
             break;
         }
     }

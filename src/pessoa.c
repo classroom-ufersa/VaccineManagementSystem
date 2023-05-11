@@ -171,3 +171,30 @@ int contador_pessoa()
 
     return (numLinhas);
 }
+
+void qnt_vac(){
+    FILE* entrada_pessoas = fopen("pessoas.txt", "r+");
+    char nome_vac[50];
+    printf("Insira o nome da vacina que deseja se fazer o quantitativo:\n");
+    scanf(" %[^\n]", nome_vac);
+    char linha[200];
+    if(entrada_pessoas == NULL){
+        printf("Erro ao abrir o arquivo de pessoas.\n");
+        exit(1);
+    }
+    int qnt_pessoas_vacinadas = 0;
+    Pessoa* cont = malloc(sizeof(Pessoa));
+    if(cont == NULL){
+        printf("Erro ao alocar memória.\n");
+        exit(1);
+    }
+    while(fgets(linha, 100, entrada_pessoas) != NULL){
+        sscanf(linha, "Nome: %s\tIdade: %i\tDocumento:%i\tVacina: %s\tDose:%i\tData de aplicação:%s", cont->nome, &cont->idade, &cont->documento, cont->cartao.vacina, &cont->cartao.dose, cont->cartao.data);
+        if(strcmp(cont->cartao.vacina, nome_vac) == 0){
+            qnt_pessoas_vacinadas++;
+        };
+    }
+    free(cont);
+    printf("%i pessoas foram vacinadas com %s.\n", qnt_pessoas_vacinadas, nome_vac);
+    fclose(entrada_pessoas);
+}
