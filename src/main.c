@@ -53,7 +53,7 @@ int main(){
             break;
             case 7:
             printf("\tConsultar Quantitativo de Pessoas que Aplicaram Determinada Vacina\t\n");
-            void qnt_vac();
+            qnt_vac();
             break;
             case 9:
             printf("\tListar Pessoas\t\n");
@@ -61,7 +61,7 @@ int main(){
             //função de listar pessoas
             break; 
             case 10:
-            break;
+            exit(1);
         }
     }
 

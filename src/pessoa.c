@@ -173,6 +173,7 @@ int contador_pessoa()
 }
 
 void qnt_vac(){
+    printf("A\n");
     FILE* entrada_pessoas = fopen("pessoas.txt", "r+");
     char nome_vac[50];
     printf("Insira o nome da vacina que deseja se fazer o quantitativo:\n");
