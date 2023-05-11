@@ -116,19 +116,11 @@ void buscar_vacina() {
 void Remove_Vacina(Vacina* primeira_celula){
     char nome_deleta[50], lote_deleta[50];
     int contador = 0, comando;
+    printf("Insira o nome da vacina que você deseja remover:\n");
+    scanf(" %[^\n]", nome_deleta);
+    printf("Insira o lote da vacina que você deseja remover:\n");
+    scanf(" %[^\n]", lote_deleta);
 
-    while(comando != 1){
-        printf("Insira o nome da vacina que você deseja remover:\n");
-        scanf(" %[^\n]", nome_deleta);
-        printf("Insira o lote da vacina que você deseja remover:\n");
-        scanf(" %[^\n]", lote_deleta);
-    
-        printf("Você realmente deseja remover a vacina %s do lote %i? Digite 1 para sim e 2 para não.\n", nome_deleta, lote_deleta);
-        while(comando > 2 || comando < 1){
-            printf("Valor inválido! Insira 1 ou 2.\n");
-            scanf("%i", &comando);
-        }
-    }
     
     Vacina* rascunho = primeira_celula;
     Vacina* anterior = NULL;
@@ -298,11 +290,12 @@ void Lista_Vacina(Vacina* lista){
         return;
     }
     do {
-        if(lista->prox == NULL)
-        printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", lista->nome, lista->lote, lista->fab, lista->val);
         if(lista->prox != NULL){
             printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", lista->nome, lista->lote, lista->fab, lista->val);
             lista = lista->prox;
+        }
+        if(lista->prox == NULL){
+            printf("Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", lista->nome, lista->lote, lista->fab, lista->val);
         }
     }
     while(lista->prox != NULL);

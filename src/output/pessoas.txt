@@ -6,3 +6,4 @@ Nome: Jair	Idade: 22	Documento: 259878	Vacina: CoronaVac	Dose: 1	Data de aplica�
 Nome: Luiz	Idade: 22	Documento: 259878	Vacina: CoronaVac	Dose: 1	Data de aplicação: 22-04-2022
 Nome: Tancredo	Idade: 22	Documento: 259878	Vacina: Pfizer	Dose: 1	Data de aplicação: 22-04-2022
 Nome: Fernando	Idade: 22	Documento: 259878	Vacina: Sputnik	Dose: 1	Data de aplicação: 22-04-2022
+Nome: Pedro	Idade: 17	Documento: 265478	Vacina: Pfizer	Dose: 2	Data de aplicação: 25-05-2023
