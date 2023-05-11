@@ -38,6 +38,7 @@ Vacina* Banco_Dados_Vacina() {
 }
 
 Vacina* adiciona_vacina(){
+    int comando;
     FILE* entrada;
     entrada = fopen("vacinas.txt", "a+");
     if(entrada == NULL) {
@@ -49,16 +50,24 @@ Vacina* adiciona_vacina(){
         printf("Erro ao alocar memória.\n");
         exit(1);
     }
-    printf("Insira o nome da vacina:\n");
-    scanf(" %[^\n]s", nova_vacina->nome);
-    nova_vacina->nome[0] = toupper(nova_vacina->nome[0]);
-    printf("Insira o lote da vacina %s:\n", nova_vacina->nome);
-    scanf(" %[^\n]s", nova_vacina->lote);
-    printf("Insira a data de fabricação da vacina %s:\n", nova_vacina->nome);
-    scanf(" %[^\n]s", nova_vacina->fab);
-    printf("Insira a data de validade da vacina %s:\n", nova_vacina->nome);
-    scanf(" %[^\n]s", nova_vacina->val);
-
+    while(comando != 1){
+        printf("Insira o nome da vacina:\n");
+        scanf(" %[^\n]s", nova_vacina->nome);
+        nova_vacina->nome[0] = toupper(nova_vacina->nome[0]);
+        printf("Insira o lote da vacina %s:\n", nova_vacina->nome);
+        scanf(" %[^\n]s", nova_vacina->lote);
+        printf("Insira a data de fabricação da vacina %s:\n", nova_vacina->nome);
+        scanf(" %[^\n]s", nova_vacina->fab);
+        printf("Insira a data de validade da vacina %s:\n", nova_vacina->nome);
+        scanf(" %[^\n]s", nova_vacina->val);
+        printf("Dados da vacina:\nNome: %s\nLote: %s\nData de Fabricacao: %s\nData de Validade: %s\n", nova_vacina->nome, nova_vacina->lote, nova_vacina->fab, nova_vacina->val);
+        printf("Os dados estão corretos?\nDigite 1 para cadastrar ou 2 para alterar.\n");
+        scanf("%i", &comando);
+        while(comando > 2 || comando < 1 || comando != 1){
+            printf("Valor inválido! Insira 1 ou 2.\n");
+            scanf("%i", &comando);
+        }
+    }
     fprintf(entrada, "Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", nova_vacina->nome, nova_vacina->lote, nova_vacina->fab, nova_vacina->val);
 
     fclose(entrada);
@@ -106,11 +115,20 @@ void buscar_vacina() {
 
 void Remove_Vacina(Vacina* primeira_celula){
     char nome_deleta[50], lote_deleta[50];
-    int contador = 0;
-    printf("Insira o nome da vacina que você deseja remover:\n");
-    scanf(" %[^\n]", nome_deleta);
-    printf("Insira o lote da vacina que você deseja remover:\n");
-    scanf(" %[^\n]", lote_deleta);
+    int contador = 0, comando;
+
+    while(comando != 1){
+        printf("Insira o nome da vacina que você deseja remover:\n");
+        scanf(" %[^\n]", nome_deleta);
+        printf("Insira o lote da vacina que você deseja remover:\n");
+        scanf(" %[^\n]", lote_deleta);
+    
+        printf("Você realmente deseja remover a vacina %s do lote %i? Digite 1 para sim e 2 para não.\n", nome_deleta, lote_deleta);
+        while(comando > 2 || comando < 1){
+            printf("Valor inválido! Insira 1 ou 2.\n");
+            scanf("%i", &comando);
+        }
+    }
     
     Vacina* rascunho = primeira_celula;
     Vacina* anterior = NULL;
