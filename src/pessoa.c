@@ -59,7 +59,7 @@ Pessoa* Banco_Dados_Pessoa() {
             printf("Erro na alocação de memória!\n");
             exit(1);
         }
-        sscanf(linha, "Nome: %s\tIdade: %d\tDocumento: %d\n", nova_pes->nome, &nova_pes->idade, &nova_pes->documento);
+        sscanf(linha, "Nome: %s\tIdade: %i\tDocumento: %i\tVacina: %s\tDose: %i\tData de aplicação: %s", nova_pes->nome, &nova_pes->idade, &nova_pes->documento, nova_pes->cartao.vacina, &nova_pes->cartao.dose, nova_pes->cartao.data);
         nova_pes->prox = primeira_celula;
         primeira_celula = nova_pes;
     }
@@ -76,14 +76,13 @@ void listar_pessoas(Pessoa* pessoa) {
         return;
     }
 
-    do {
-        printf("Nome: %s\tIdade: %d\tDocumento: %d\n", pessoa->nome, pessoa->idade, pessoa->documento);
+    for(pessoa; pessoa->prox != NULL; pessoa = pessoa->prox) {
+        printf("Nome: %s\tIdade: %i\tDocumento: %i\tVacina: %s\tDose: %i\tData de aplicação: %s\n", pessoa->nome, pessoa->idade, pessoa->documento, pessoa->cartao.vacina, pessoa->cartao.dose, pessoa->cartao.data);
         pessoa = pessoa->prox;
         if(pessoa->prox == NULL) {
             printf("Nome: %s\tIdade: %d\tDocumento: %d\n", pessoa->nome, pessoa->idade, pessoa->documento);
         }
     }
-    while(pessoa->prox != NULL);
 
     printf("\n");
     fclose(entrada);
