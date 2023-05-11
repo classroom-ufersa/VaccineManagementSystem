@@ -69,14 +69,15 @@ Pessoa* Banco_Dados_Pessoa() {
     return(primeira_celula);
 }
 
-void listar_pessoas(Pessoa* pessoa) {
+void listar_pessoas(Pessoa* lista) {
     FILE* entrada = fopen("pessoas.txt", "rt");
     if(entrada == NULL) {
         printf("Pessoas não Cadastradas!\n\n");
         return;
     }
+    Pessoa* pessoa;
 
-    for(pessoa; pessoa->prox != NULL; pessoa = pessoa->prox) {
+    for(pessoa = lista; pessoa->prox != NULL; pessoa = pessoa->prox) {
         printf("Nome: %s\tIdade: %i\tDocumento: %i\tVacina: %s\tDose: %i\tData de aplicação: %s\n", pessoa->nome, pessoa->idade, pessoa->documento, pessoa->cartao.vacina, pessoa->cartao.dose, pessoa->cartao.data);
         pessoa = pessoa->prox;
         if(pessoa->prox == NULL) {
