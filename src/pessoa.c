@@ -199,3 +199,4 @@ void qnt_vac(){
     printf("%i pessoas foram vacinadas com %s.\n", qnt_pessoas_vacinadas, nome_vac);
     fclose(entrada_pessoas);
 }
+

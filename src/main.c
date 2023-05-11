@@ -8,7 +8,6 @@ int main(){
     int Opcao;
     int qnt_linhas;
     Vacina* lista_vacina = Banco_Dados_Vacina();
-    Pessoa* lista_pessoa = Banco_Dados_Pessoa();
 
     printf(" _______________________________________________ \n|\tBem vindo ao Gerenciador de Vacinas\t|\n|\tDesenvolvido por:\t\t\t|\n|\t>Abner Gama Torres\t\t\t|\n|\t>Vladimyr de Oliveira Guedes\t\t|\n|_______________________________________________|\n");
     while(Opcao != 13){
@@ -46,6 +45,8 @@ int main(){
             case 5:
             printf("\tAplicação de Vacina em uma Pessoa\t\n");
             Aplicar_Vacina();
+            qnt_linhas = contador_pessoa();
+            CombSort_Pessoa(qnt_linhas);
             break;
             case 6:
             printf("\tEditar Vacina Cadastrada\t\n");  

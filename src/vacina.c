@@ -115,7 +115,7 @@ void buscar_vacina() {
 
 void Remove_Vacina(Vacina* primeira_celula){
     char nome_deleta[50], lote_deleta[50];
-    int contador = 0, comando;
+    int contador = 0;
     printf("Insira o nome da vacina que você deseja remover:\n");
     scanf(" %[^\n]", nome_deleta);
     printf("Insira o lote da vacina que você deseja remover:\n");
