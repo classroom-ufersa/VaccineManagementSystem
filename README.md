@@ -8,7 +8,7 @@ Projetar um sistema que controle o registro de vacinas em uma dada população, 
 Linguagem de programação: C.
 
 # Funcionalidades
-Adicionar Vacina.
+Adicionar Vacina\n
 Remover Vacina.
 Listar Vacinas.
 Buscar Vacinas.
