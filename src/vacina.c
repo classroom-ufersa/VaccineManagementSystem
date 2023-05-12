@@ -63,7 +63,7 @@ Vacina* adiciona_vacina(){
         printf("Dados da vacina:\nNome: %s\nLote: %s\nData de Fabricacao: %s\nData de Validade: %s\n", nova_vacina->nome, nova_vacina->lote, nova_vacina->fab, nova_vacina->val);
         printf("Os dados estão corretos?\nDigite 1 para cadastrar ou 2 para alterar.\n");
         scanf("%i", &comando);
-        while(comando > 2 || comando < 1 || comando != 1){
+        while(comando > 2 || comando < 1){
             printf("Valor inválido! Insira 1 ou 2.\n");
             scanf("%i", &comando);
         }
