@@ -8,7 +8,7 @@
 - Linguagem de programação: C.
 
 # Funcionalidades
-- Adicionar Vacina
+- Adicionar Vacina.
 - Remover Vacina.
 - Listar Vacinas.
 - Buscar Vacinas.
