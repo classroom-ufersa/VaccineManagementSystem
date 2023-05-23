@@ -1,2 +1,0 @@
-Nome: Joao	Idade: 19	Documento: 234
-Nome: Maria	Idade: 19	Documento: 567

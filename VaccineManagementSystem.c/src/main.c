@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "/home/vladimyr/Documentos/Visual_Studio_Code/GitHub/Vacina/VaccineManagementSystem-1/VaccineManagementSystem.c/src/pessoa.c"
+#include "C:\Users\Vladimyr\OneDrive\Documentos\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\src\pessoa.c"
 
 int main(){
     int Opcao;
@@ -16,7 +16,7 @@ int main(){
         printf("Digite a opção desejada:\n");
         printf("1-Adicionar Vacina\n2-Remover Vacina\n3-Listar Vacinas\n4-Buscar Vacinas\n5-Aplicação de Vacina em Uma Pessoa\n6-Editar Vacina Cadastrada\n7-Consultar Quantidade de Pessoas que Aplicaram Determinada Vacina\n8-Adicionar Pessoa\n9-Listar Pessoas\n10-Remover Pessoa\n11-Editar Pessoa\n12-Buscar Pessoa\n13-Sair do Pograma\n");
         scanf("%i", &Opcao);
-        system("clear");
+        system("cls");
         switch(Opcao){
             case 1:
             printf("\tAdicionar Vacina\t\n");
