@@ -235,6 +235,7 @@ void remove_pessoa(Pessoa* primeira_celula){
     fclose(novo_arquivo);
 }
 
+
 void edita_pessoa(Pessoa* primeira_celula){
     char nome_edita[50];
     int contador = 0, opcao;
