@@ -226,14 +226,12 @@ void edita_pessoa(Pessoa* primeira_celula){
         printf("Erro ao abrir o arquivo de entrada!\n\n");
         exit(1);
     }
-    do 
-    {
+    do {
         escolha = 0;
-        if (rascunho->prox == NULL)
-        {
-            if ((strcmp(rascunho->nome, nome_edita) != 0))
-            {
+        if (rascunho->prox != NULL) {
+            if (strcmp(rascunho->nome, nome_edita) != 0) {
                 fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+                rascunho = rascunho->prox;
             }
             else {
                 while(escolha != 2) {
@@ -264,53 +262,46 @@ void edita_pessoa(Pessoa* primeira_celula){
         
                 fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
                 contador = 0;
-                fclose(novo_arquivo);
-                return;
+                rascunho = rascunho->prox;
             }
         }
-        if(strcmp(rascunho->nome, nome_edita) != 0) 
-        {
-            fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
-            rascunho = rascunho->prox;
-        }
-        else 
-        {
-            while(escolha != 2)
-            {
-                printf("Pessoa Atual.\nNome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
-                printf("Digite o que deseja editar:\n1-Nome\n2-Idade\n3-Documento\n");
-                scanf("%d", &opcao);
-                contador++;
-                switch(opcao) 
-                {
-                    case 1:
-                    printf("Digite o novo nome da pessoa: ");
-                    scanf(" %[^\n]s", rascunho->nome);
-                    rascunho->nome[0] = toupper(rascunho->nome[0]);
-                    break;
-                    case 2:
-                    printf("Digite a nova idade da pessoa: ");
-                    scanf("%d", &rascunho->idade);
-                    break;
-                    case 3:
-                    printf("Digite o novo documento da pessoa: ");
-                    scanf("%d", &rascunho->documento);
-                    break;
-                }
-                printf("Deseja fazer mais alguma alteração?\n");
-                printf("1-Sim\n2-Não: ");
-                scanf("%d", &escolha);
-            } 
-        
-            fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
-            rascunho = rascunho->prox;
+        if(rascunho->prox == NULL) {
+            if(strcmp(rascunho->nome, nome_edita) != 0) {
+                fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+            }
+            else {
+                while(escolha != 2) {
+                    printf("Pessoa Atual.\nNome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+                    printf("Digite o que deseja editar:\n1-Nome\n2-Idade\n3-Documento\n");
+                    scanf("%d", &opcao);
+                    contador++;
+                    switch(opcao) 
+                    {
+                        case 1:
+                        printf("Digite o novo nome da pessoa: ");
+                        scanf(" %[^\n]s", rascunho->nome);
+                        rascunho->nome[0] = toupper(rascunho->nome[0]);
+                        break;
+                        case 2:
+                        printf("Digite a nova idade da pessoa: ");
+                        scanf("%d", &rascunho->idade);
+                        break;
+                        case 3:
+                        printf("Digite o novo documento da pessoa: ");
+                        scanf("%d", &rascunho->documento);
+                        break;
+                    }
+                    printf("Deseja fazer mais alguma alteração?\n");
+                    printf("1-Sim\n2-Não: ");
+                    scanf("%d", &escolha);
+                } 
+                fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+            }
         } 
     }
     while(rascunho->prox != NULL);
     if(contador == 0)
         printf("Esta pessoa não está cadastrada!\n\n");
-
-    contador = 0;
 
     fclose(novo_arquivo);
 }
