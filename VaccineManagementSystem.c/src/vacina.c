@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "C:\Users\Vladimyr\OneDrive\Documentos\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\include\vacina.h"
+#include "C:\Users\Vladimyr\Documents\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\include\vacina.h"
 
 typedef struct vacina{
     char nome[50];
@@ -113,57 +113,35 @@ void Remove_Vacina(Vacina* primeira_celula){
     scanf(" %[^\n]", lote_deleta);
     
     Vacina* rascunho = primeira_celula;
-    Vacina* anterior = NULL;
     FILE* novo_arquivo = fopen("vacinas.txt", "w");
     if(novo_arquivo == NULL){
         printf("Erro ao abrir o arquivo de entrada!\n");
         exit(1);
     }
     do{
-        if((rascunho->prox == NULL && anterior == NULL)) {
-            if((strcmp(rascunho->nome, nome_deleta) != 0) && (strcmp(rascunho->lote, lote_deleta) != 0)) {
+        if(rascunho->prox != NULL) {
+            if((strcmp(rascunho->nome, nome_deleta) != 0 && strcmp(rascunho->lote, lote_deleta) == 0) || ((strcmp(rascunho->lote, lote_deleta) != 0) && (strcmp(rascunho->nome, nome_deleta) == 0)) || ((strcmp(rascunho->lote, lote_deleta) != 0) && (strcmp(rascunho->nome, nome_deleta) != 0))){
                 fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
-                free(rascunho);
-                fclose(novo_arquivo);
-                printf("Esta vacina não está cadastrada!\n\n");
-                return;
+                rascunho = rascunho->prox;
             }
-            free(rascunho);
-            fclose(novo_arquivo);
-            return;
-        }
-        if(rascunho->prox != NULL && (strcmp(rascunho->nome, nome_deleta) != 0) && strcmp(rascunho->lote, lote_deleta) != 0) {
-            fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
-            anterior = rascunho;
-            rascunho = rascunho->prox;
-        }
-        else if(rascunho->prox != NULL && (strcmp(rascunho->nome, nome_deleta) == 0) && (strcmp(rascunho->lote, lote_deleta) == 0)) {
-            if(anterior == NULL) {
+            else {
                 rascunho = rascunho->prox;
                 contador++;
             }
-            anterior->prox = rascunho->prox;
-            rascunho = anterior;
-            contador++;
         }
-        if(rascunho->prox == NULL){
-            if((strcmp(rascunho->nome, nome_deleta) != 0) && (strcmp(rascunho->lote, lote_deleta) != 0)) {
+        if(rascunho->prox == NULL) {
+            if((strcmp(rascunho->nome, nome_deleta) != 0 && strcmp(rascunho->lote, lote_deleta) == 0) || ((strcmp(rascunho->lote, lote_deleta) != 0) && (strcmp(rascunho->nome, nome_deleta) == 0)) || ((strcmp(rascunho->lote, lote_deleta) != 0) && (strcmp(rascunho->nome, nome_deleta) != 0))){
                 fprintf(novo_arquivo,"Nome: %s\tLote: %s\tData de Fabricacao: %s\tData de Validade: %s\n", rascunho->nome,rascunho->lote,rascunho->fab,rascunho->val);
             }
-            else{
-                anterior->prox = NULL;
-                free(rascunho);
+            if(strcmp(rascunho->nome, nome_deleta) == 0 && strcmp(rascunho->lote, lote_deleta) == 0) {
                 contador++;
             }
         }
-
     } 
     while(rascunho->prox != NULL);
 
     if(contador == 0)
         printf("Esta vacina não está cadastrada!\n\n");
-        
-    contador = 0;
 
     fclose(novo_arquivo);
 }

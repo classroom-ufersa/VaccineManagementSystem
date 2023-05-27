@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "C:\Users\Vladimyr\OneDrive\Documentos\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\include\pessoa.h"
-#include "C:\Users\Vladimyr\OneDrive\Documentos\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\src\vacina.c"
+#include "C:\Users\Vladimyr\Documents\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\include\pessoa.h"
+#include "C:\Users\Vladimyr\Documents\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\src\vacina.c"
 
 typedef struct cartao{
     char vacina[50];
@@ -178,53 +178,30 @@ void remove_pessoa(Pessoa* primeira_celula){
     scanf("%d", &documento_deleta);
     
     Pessoa* rascunho = primeira_celula;
-    Pessoa* anterior = NULL;
     FILE* novo_arquivo = fopen("pessoas.txt", "w");
     if(novo_arquivo == NULL){
         printf("Erro ao abrir o arquivo de entrada!\n");
         exit(1);
     }
     do{
-        if((rascunho->prox == NULL && anterior == NULL)) {
-            if((strcmp(rascunho->nome, nome_deleta) != 0) && (rascunho->documento != documento_deleta)) {
-                fprintf(novo_arquivo,"Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
-                free(rascunho);
-                fclose(novo_arquivo);
-                return;
+        if(rascunho->prox != NULL) {
+            if((strcmp(rascunho->nome, nome_deleta) != 0 && (rascunho->documento == documento_deleta)) || ((rascunho->documento != documento_deleta) && (strcmp(rascunho->nome, nome_deleta) == 0)) || ((rascunho->documento != documento_deleta) && (strcmp(rascunho->nome, nome_deleta) != 0))){
+                fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+                rascunho = rascunho->prox;
             }
-            printf("Esta pessoa não está cadastrada!\n\n");
-            free(rascunho);
-            fclose(novo_arquivo);
-            return;
-        }
-        if((strcmp(rascunho->nome, nome_deleta) != 0) && (rascunho->documento != documento_deleta)){
-            fprintf(novo_arquivo,"Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
-            anterior = rascunho;
-            rascunho = rascunho->prox;
-        }
-        else if(rascunho->prox == NULL && (strcmp(rascunho->nome, nome_deleta) == 0) && (rascunho->documento == documento_deleta)) {
-            anterior->prox = NULL;
-            free(rascunho);
-            contador++;
-        }
-        else if((strcmp(rascunho->nome, nome_deleta) == 0) && (rascunho->documento == documento_deleta)) {
-            if(anterior == NULL){
-                rascunho = rascunho->prox; 
-                contador++;
-            }
-            else{
-                anterior->prox = rascunho->prox;
-                free(rascunho);
-                rascunho = anterior;
+            else {
+                rascunho = rascunho->prox;
                 contador++;
             }
         }
-        if(rascunho->prox == NULL){
-            if((strcmp(rascunho->nome, nome_deleta) != 0) && (rascunho->documento != documento_deleta)) {
-                fprintf(novo_arquivo,"Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+        if(rascunho->prox == NULL) {
+            if((strcmp(rascunho->nome, nome_deleta) != 0 && (rascunho->documento == documento_deleta)) || ((rascunho->documento != documento_deleta) && (strcmp(rascunho->nome, nome_deleta) == 0)) || ((rascunho->documento != documento_deleta) && (strcmp(rascunho->nome, nome_deleta) != 0))){
+                fprintf(novo_arquivo, "Nome: %s\tIdade: %d\tDocumento: %d\n", rascunho->nome, rascunho->idade, rascunho->documento);
+            }
+            if(strcmp(rascunho->nome, nome_deleta) == 0 && (rascunho->documento == documento_deleta)) {
+                contador++;
             }
         }
-
     } 
     while(rascunho->prox != NULL);
     if(contador == 0)
