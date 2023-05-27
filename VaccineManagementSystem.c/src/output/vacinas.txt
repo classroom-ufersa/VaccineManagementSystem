@@ -1,3 +1,4 @@
-Nome: Chines	Lote: 2	Data de Fabricacao: 23	Data de Validade: 24
+Nome: Butantan	Lote: 5	Data de Fabricacao: 24	Data de Validade: 25
 Nome: CoronaVac	Lote: 7	Data de Fabricacao: 23	Data de Validade: 24
 Nome: Jansey	Lote: 3	Data de Fabricacao: 23	Data de Validade: 24
+Nome: Pfizer	Lote: 2	Data de Fabricacao: 23	Data de Validade: 24
