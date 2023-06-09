@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "C:\Users\Vladimyr\Documents\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\include\vacina.h"
+#include "C:\Users\Vladimyr\Documents\GitHub\Vacina\VaccineManagementSystem\VaccineManagementSystem.c\include\vacina.h"
 
 typedef struct vacina{
     char nome[50];

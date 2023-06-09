@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "C:\Users\Vladimyr\Documents\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\src\pessoa.c"
+#include "C:\Users\Vladimyr\Documents\GitHub\Vacina\VaccineManagementSystem\VaccineManagementSystem.c\src\pessoa.c"
 
 int main(){
     int Opcao;

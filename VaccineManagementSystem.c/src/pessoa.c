@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "C:\Users\Vladimyr\Documents\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\include\pessoa.h"
-#include "C:\Users\Vladimyr\Documents\GitHub\Vacinna\VaccineManagementSystem\VaccineManagementSystem.c\src\vacina.c"
+#include "C:\Users\Vladimyr\Documents\GitHub\Vacina\VaccineManagementSystem\VaccineManagementSystem.c\include\pessoa.h"
+#include "C:\Users\Vladimyr\Documents\GitHub\Vacina\VaccineManagementSystem\VaccineManagementSystem.c\src\vacina.c"
 
 typedef struct cartao{
     char vacina[50];
